@@ -1,8 +1,8 @@
-/** This program outputs a line: "Hello, (parameter from
- * the command line)". If there are several parameters,
- * it outputs lines to each of the parameters. If the
- * program didn't get any parameters, it outputs:
- * "Hello, unnamed"
+/** This program outputs a line:
+ * "Hello, (parameter from the command line)". If there
+ * are several parameters, it outputs lines to each of
+ * the parameters. If the program didn't get any parameters,
+ * it outputs: "Hello, unnamed"
  */
 public class HelloName {
     /** Method main verifies parameters from command line and
@@ -16,8 +16,8 @@ public class HelloName {
             for (int i = 0; i < args.length; i++) {
                 System.out.println("Hello, " + args[i]);
             }
-          }
         }
     }
+}
 
 
