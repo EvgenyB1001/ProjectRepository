@@ -15,13 +15,13 @@ public class Calculate {
         return param1 * param2;
     }
 
-    /** Method returns the result of the division
-     */
+    /** Method returns the result of the division */
     private static double quotient(double param1, double param2) {
         return param1 / param2;
     }
     /** Method main gets parameters from command line, verifies parameteres and
-     * outputs results of calculate operations */
+     * outputs results of calculate operations
+     */
     public static void main(String[] args) {
         double[] numbers = new double[args.length];
         /** It provides correct format of parameters and verifies that this is possible */
