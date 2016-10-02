@@ -1,21 +1,37 @@
 /** This program does 4 math operations (+, -, *, /). Each operation has there own method. */
 public class Calculate {
-    /** Method returns sum of parameters */
+    /** Method returns sum of parameters
+     * @param param1 the first parameter of calculation
+     * @param param2 the second parameter of calculation
+     * @return the sum of two input parameters
+     */
     private static double sum(double param1, double param2) {
         return param1 + param2;
     }
 
-    /** Method returns difference of parameters */
+    /** Method returns difference of parameters
+     * @param param1 the first parameter of calculation
+     * @param param2 the second parameter of calculation
+     * @return the difference of two input parameters
+     */
     private static double difference(double param1, double param2) {
         return param1 - param2;
     }
 
-    /** Method multiplies parameters and return result */
+    /** Method multiplies parameters and return result
+     * @param param1 the first parameter of calculation
+     * @param param2 the second parameter of calculation
+     * @return te result of multiplication of two input parameters
+     */
     private static double multiply(double param1, double param2) {
         return param1 * param2;
     }
 
-    /** Method returns the result of the division */
+    /** Method returns the result of the division
+     * @param param1 the first parameter of calculation
+     * @param param2 the second parameter of calculation
+     * @return te result of division of two input parameters
+     */
     private static double quotient(double param1, double param2) {
         return param1 / param2;
     }
@@ -28,9 +44,8 @@ public class Calculate {
         try {
             for (int i = 0; i < args.length; i++) {
                 numbers[i] = Double.parseDouble(args[i]);
-              }
             }
-        catch(NumberFormatException e) {
+        } catch(NumberFormatException e) {
             System.out.println("Required number, not line");
            return;
         }
@@ -38,7 +53,7 @@ public class Calculate {
            System.out.println("Unnecessary parameters are ignored");
         }
        /** Verifies that there are not missed parameters */
-        if (numbers.length==0 || numbers.length == 1 ) {
+        if (numbers.length <= 1) {
                 System.out.println("Missed parameters. Expected two parameters");
                 return;
             } else {
