@@ -1,4 +1,6 @@
-/* The program outputs parameters from the command line in reverse order */
+/**
+ * The program outputs parameters from the command line in reverse order
+ */
 public class CommandLineParams {
     /**
      * Method main get parameters from the command line and outputs
