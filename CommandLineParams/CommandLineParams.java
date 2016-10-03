@@ -1,6 +1,7 @@
-/** The program outputs parameters from the command line in reverse order */
+/* The program outputs parameters from the command line in reverse order */
 public class CommandLineParams {
-    /** Method main get parameters from the command line and outputs
+    /**
+     * Method main get parameters from the command line and outputs
      * them in reverse order
      */
     public static void main(String[] args) {
