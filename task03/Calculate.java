@@ -1,8 +1,10 @@
-/** This program does 4 math operations (+, -, *, /).
+/**
+ * This program does 4 math operations (+, -, *, /).
  * Each operation has there own method.
  */
 public class Calculate {
-    /** Method returns sum of parameters
+    /**
+     *  Method returns sum of parameters
      * @param param1 the first parameter of calculation
      * @param param2 the second parameter of calculation
      * @return the sum of two input parameters
@@ -11,7 +13,8 @@ public class Calculate {
         return param1 + param2;
     }
 
-    /** Method returns difference of parameters
+    /**
+     *  Method returns difference of parameters
      * @param param1 the first parameter of calculation
      * @param param2 the second parameter of calculation
      * @return the difference of two input parameters
@@ -20,7 +23,8 @@ public class Calculate {
         return param1 - param2;
     }
 
-    /** Method multiplies parameters and return result
+    /**
+     *  Method multiplies parameters and return result
      * @param param1 the first parameter of calculation
      * @param param2 the second parameter of calculation
      * @return te result of multiplication of two input parameters
@@ -29,7 +33,8 @@ public class Calculate {
         return param1 * param2;
     }
 
-    /** Method returns the result of the division
+    /**
+     *  Method returns the result of the division
      * @param param1 the first parameter of calculation
      * @param param2 the second parameter of calculation
      * @return te result of division of two input parameters
