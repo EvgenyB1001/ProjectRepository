@@ -5,11 +5,12 @@
  * it outputs: "Hello, unnamed"
  */
 public class HelloName {
-    /** Method main verifies parameters from command line and
+    /**
+     * Method main verifies parameters from command line and
      * ouputs line(s) depends on number of input parameters
      */
     public static void main(String[] args) {
-        /** Check number of parameters, which program got from the command line. */
+        // Check number of parameters, which program got from the command line. /
         if (args.length == 0) {
             System.out.println("Hello, unnamed");
         } else {
