@@ -1,6 +1,6 @@
 package com.homework;
-import java.io.*;
 import java.lang.*;
+import java.util.*;
 
 /**
  * The program calculates real roots of quadratic equation. Parameters of
@@ -16,10 +16,8 @@ public class Main {
      */
     public static double[] calculateEquation (double[] params) {
         double[] result = new double[2];
-        double discriminant;
-        double radicalDiscriminant;
         // Calculates discriminant of the quadratic equation
-        discriminant = params[1] * params[1] - 4 * params[0] * params[2];
+        double discriminant = params[1] * params[1] - 4 * params[0] * params[2];
         //Verifies and performs actions in case of negative and null discriminant
         if (Double.compare(discriminant, 0) < 0) {
             System.out.println("Negative discriminant. Program calculates only real roots");
@@ -30,11 +28,35 @@ public class Main {
             return result;
         }
         // Calculates square root of the discriminant
-        radicalDiscriminant = Math.sqrt(discriminant);
+        double radicalDiscriminant = Math.sqrt(discriminant);
         // Calculates roots of the quadratic equation
         result[0] = (- params[1] + radicalDiscriminant) / (2 * params[0]);
         result[1] = (- params[1] - radicalDiscriminant) / (2 * params[0]);
         return result;
+    }
+
+    /**
+     * Method verifySpecialCases checks, isn't the equation quadratic and if it is
+     * returns true. Also it verifies is there the special zero result of equation
+     * and, if it is, shows info and returns true
+     * @param params array of parameters to check
+     * @return compare boolean value: false - if equation is quadratic and has no special result
+     */
+    public static boolean verifySpecialCases(double [] params) {
+        boolean compare = false;
+        // Checks, if there are special results
+        if (Double.compare(params[1], 0) == 0 && Double.compare(params[2], 0) == 0) {
+            System.out.println("The root is 0");
+            compare = true;
+            return compare;
+        }
+        // Verify, if the equation isn't quadratic
+        if (Double.compare(params[0], 0) == 0) {
+            System.out.println("Equation isn't quadratic. Set parameters of quadratic equation");
+            compare = true;
+            return compare;
+        }
+        return compare;
     }
 
    /**
@@ -44,43 +66,29 @@ public class Main {
      * */
    public static void main(String[] args) {
         double [] parameters = new double[3];
-        double [] result;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
         // Verifies that input parameters are numbers
         try {
             for (int i = 0; i < parameters.length; i++) {
-                System.out.println("Set " + (i + 1) + " parameter");
-                parameters[i] = Double.parseDouble(reader.readLine());
+                System.out.println("Set " + ( i + 1) + " parameter");
+                parameters[i] = scanner.nextDouble();
             }
-        } catch (NumberFormatException e){
-            System.out.println("Incorrect input data. Expected double format");
-            return;
-        } catch (Exception e1) {
-            System.out.println("Input exception");
+        } catch (InputMismatchException e1) {
+            System.out.println("Incorrect input values. Expected double format");
             return;
         }
-        // Checks special cases of input parameters
-        if (Double.compare(parameters[0], 0) == 0) {
-            System.out.println("Equation isn't quadratic. Set parameters of quadratic equation");
-            return;
-        } else if (Double.compare(parameters[1], 0) == 0 && Double.compare(parameters[2], 0) == 0) {
-            System.out.println("The root is 0");
+        // Verifies, is the equation quadratic and is there a special result
+        if (verifySpecialCases(parameters)) {
             return;
         }
-        result = calculateEquation(parameters);
-        // Checks, if there are no roots, program shows info
-        if (Double.compare(result[0], 0) == 0 && Double.compare(result[1], 0) == 0) {
-            System.out.println("There is no roots");
-            return;
-        }
-        //Checks, if roots are equal and outputs in there own way
-        if (Double.compare(result[0], result[1]) == 0) {
-            System.out.println("The only root is " + result[1]);
-            return;
-        }
+        double [] result = calculateEquation(parameters);
         // Outputs roots of the equation
-        for (int i = 0; i < result.length; i++) {
-            System.out.println("Result x" + (i + 1) + " = " + result[i]);
+        if (Double.compare(result[0], 0) == 0 && Double.compare(result[1], 0) == 0) {
+           System.out.println("There is no roots");
+        } else {
+           for (int i = 0; i < result.length; i++) {
+               System.out.println("Result x" + (i + 1) + " = " + result[i]);
+           }
         }
-    }
+   }
 }
