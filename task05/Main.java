@@ -1,5 +1,5 @@
 package com.homework;
-import java.io.*;
+import java.util.*;
 import java.lang.*;
 
 /**
@@ -68,18 +68,15 @@ public class Main {
      */
     public static void main(String[] args) {
         double[] parameters = new double[3];
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
+        // Catches exceptions if there are not valid input data
         try {
             for (int i = 0; i < parameters.length; i++) {
                 System.out.println("Set " + (i + 1) + " side of triangle");
-                parameters[i] = Double.parseDouble(reader.readLine());
+                parameters[i] = scanner.nextDouble();
             }
-            // Catches exceptions if there are not valid input data
-        } catch (NumberFormatException e) {
+        } catch (InputMismatchException e) {
             System.out.println("Incorrect input data. Expected double input format");
-            return;
-        } catch (Exception e2) {
-            System.out.println("Input exception");
             return;
         }
         // Calls methods to verify values and to determine the type of triangle
