@@ -10,7 +10,7 @@ public class Main {
     /**
      * Method calculateEquation gets array of parameters, verifies
      * that discriminant isn't negative. The method shows outputs result
-     * of calculation to the command line
+     * of calculation to the command line.
      * @param params array of the parameters of quadratic equation
      */
     public static void calculateEquation (double[] params) {
