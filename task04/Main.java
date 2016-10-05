@@ -12,7 +12,6 @@ public class Main {
      * that discriminant isn't negative. The method shows outputs result
      * of calculation to the command line
      * @param params array of the parameters of quadratic equation
-     * @return array of equation roots
      */
     public static void calculateEquation (double[] params) {
         double[] result = new double[2];
@@ -42,7 +41,7 @@ public class Main {
      * returns true. Also it verifies is there the special zero result of equation
      * and, if it is, shows info and returns true
      * @param params array of parameters to check
-     * @return compare boolean value: false - if equation is quadratic and has no special result
+     * @return boolean value: false - if equation is quadratic and has no special result
      */
     public static boolean verifySpecialCases(double [] params) {
         // Checks, if there are special results
