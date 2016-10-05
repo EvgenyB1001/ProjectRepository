@@ -9,7 +9,7 @@ import java.util.*;
 public class Main {
     /**
      * Method calculateEquation gets array of parameters, verifies
-     * that discriminant isn't negative. The method outputs result
+     * that discriminant isn't negative. The method shows outputs result
      * of calculation to the command line
      * @param params array of the parameters of quadratic equation
      */
@@ -31,22 +31,15 @@ public class Main {
         result[0] = (- params[1] + Math.sqrt(discriminant)) / (2 * params[0]);
         result[1] = (- params[1] - Math.sqrt(discriminant)) / (2 * params[0]);
         System.out.println("Result: x1 = " + result[0] + ", x2 = " + result[1]);
-        return;
     }
 
     /**
      * Method verifySpecialCases checks, isn't the equation quadratic and if it is
-     * returns true. Also it verifies is there the special zero result of equation
-     * and, if it is, shows info and returns true
+     * returns true.
      * @param params array of parameters to check
-     * @return boolean value: false - if equation is quadratic and has no special result
+     * @return compare boolean value: false - if equation is quadratic
      */
-    public static boolean verifySpecialCases(double [] params) {
-        // Checks, if there are special results
-        if (Double.compare(params[1], 0) == 0 && Double.compare(params[2], 0) == 0) {
-            System.out.println("The root is 0");
-            return true;
-        }
+    public static boolean verifyNotQuadratic(double [] params) {
         // Verify, if the equation isn't quadratic
         if (Double.compare(params[0], 0) == 0) {
             System.out.println("Equation isn't quadratic. Set parameters of quadratic equation");
@@ -72,10 +65,9 @@ public class Main {
             System.out.println("Incorrect input values. Expected double format");
             return;
         }
-        // Verifies, is the equation quadratic and is there a special result
-        if (verifySpecialCases(parameters)) {
-            return;
+        // Verifies, is the equation quadratic
+        if (!(verifyNotQuadratic(parameters))) {
+            calculateEquation(parameters);
         }
-        calculateEquation(parameters);
    }
 }
