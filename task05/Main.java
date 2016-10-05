@@ -11,7 +11,7 @@ public class Main {
      * Method verifySides gets values of sides and verify that values are correct
      * and the triangle with this sides exists.
      * @param params array of values of sides
-     * @return verify boolean value: if true - values of sides are correct
+     * @return boolean value: true - values of sides are correct
      */
     public static boolean verifySides(double [] params) {
         // Verifies values of sides
