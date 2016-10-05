@@ -27,11 +27,9 @@ public class Main {
             System.out.println("Result: x1 = " + result[0] + ", x2 = " + result[1]);
             return;
         }
-        // Calculates square root of the discriminant
-        double radicalDiscriminant = Math.sqrt(discriminant);
         // Calculates roots of the quadratic equation
-        result[0] = (- params[1] + radicalDiscriminant) / (2 * params[0]);
-        result[1] = (- params[1] - radicalDiscriminant) / (2 * params[0]);
+        result[0] = (- params[1] + Math.sqrt(discriminant)) / (2 * params[0]);
+        result[1] = (- params[1] - Math.sqrt(discriminant)) / (2 * params[0]);
         System.out.println("Result: x1 = " + result[0] + ", x2 = " + result[1]);
         return;
     }
