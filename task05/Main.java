@@ -76,7 +76,7 @@ public class Main {
             return;
         }
         // Calls methods to verify values and to determine the type of triangle
-        if (verifySides(parameters) == true) {
+        if (verifySides(parameters)) {
             detectTriangle(parameters);
         }
     }
