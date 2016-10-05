@@ -14,23 +14,19 @@ public class Main {
      * @return verify boolean value: if true - values of sides are correct
      */
     public static boolean verifySides(double [] params) {
-        boolean verify = false;
         // Verifies values of sides
         for (int i = 0; i < params.length; i++) {
             if (Double.compare(params[i], 0) <= 0) {
                 System.out.println("Incorrect side value of triangle");
-                return verify;
+                return false;
             }
         }
         // Checks that the triangle exists
-        if (params[0] < params[1] + params[2] && params[0] > Math.abs(params[1] - params[2])) {
-            verify = true;
-        } else {
+        if (params[0] >= params[1] + params[2] || params[0] <= Math.abs(params[1] - params[2])) {
             System.out.println("Triangle doesn't exist with such values of sides");
-            verify = false;
-            return verify;
+            return false;
         }
-        return verify;
+        return true;
     }
 
     /**
