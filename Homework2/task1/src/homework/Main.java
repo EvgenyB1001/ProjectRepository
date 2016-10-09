@@ -30,6 +30,9 @@ public class Main {
         if (dictWords) {
             System.out.println("The line has word(s) from dictionary");
         }
+        if (!(noNumbers) && !(onlyNumbers) && !(fiveWords) && !(dictWords)) {
+            System.out.println("Line doesn't comply to any rule");
+        }
     }
 
     /**

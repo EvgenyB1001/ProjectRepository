@@ -7,19 +7,22 @@ package homework.verification;
 public class VerifyOnlyNumbers {
 
     /**
-     * Method isOnlyNumbers gets array of words from the line an checks every
-     * word to have only numbers.
+     * Method isOnlyNumbers gets array of words from the line an checks
+     * if there are only numbers.
      *
      * @param words array of words from the line
      * @return boolean value: true - if there are only numbers
      */
-    public static boolean isOnlyNumbers(String[] words) throws Exception {
-        for (String s : words) {
-            for (int i = 0; i < s.length(); i++) {
-                if (!(Character.isDigit(s.charAt(i)))) {
+    public static boolean isOnlyNumbers(String[] words) {
+        // if length is 1, then in line there are only symbols and no whitespaces and commas
+        if (words.length == 1) {
+            for (int i = 0; i < words[0].length(); i++) {
+                if (!(Character.isDigit(words[0].charAt(i)))) {
                     return false;
                 }
             }
+        } else {
+            return false;
         }
         return true;
     }
