@@ -2,36 +2,29 @@ package homework;
 
 import homework.verification.*;
 
+import java.util.ArrayList;
+
 /**
  * Class Main has entry point to program.
- * It has two methods: main and showInfo.
+ * It has two methods: main and notAnyRule.
  */
 public class Main {
 
     /**
-     * Method showInfo gets boolean parameters and depending on values of the parameters
-     * output information, does the line complies to rules.
+     * Method noAnyRule gets array of boolean parameters and depending on values of the parameters
+     * output information, doesn't the line comply to any rule .
      *
-     * @param noNumbers   boolean value: true - if there are no numbers in line.
-     * @param onlyNumbers boolean value: true - if there are only numbers in line.
-     * @param fiveWords   boolean value: true - if there are five or more words in line.
-     * @param dictWords   boolean value: true - if there are one or more words from dictionary in line.
+     * @param list list of boolean values.
      */
-    public static void showInfo(boolean noNumbers, boolean onlyNumbers, boolean fiveWords, boolean dictWords) {
-        if (noNumbers) {
-            System.out.println("The line has no numbers");
+    public static void notAnyRule(ArrayList<Boolean> list) {
+        int count = 0;
+        for (Boolean b : list) {
+            if (!b) {
+                count++;
+            }
         }
-        if (onlyNumbers) {
-            System.out.println("The line has only numbers");
-        }
-        if (fiveWords) {
-            System.out.println("The line has five or more words");
-        }
-        if (dictWords) {
-            System.out.println("The line has word(s) from dictionary");
-        }
-        if (!(noNumbers) && !(onlyNumbers) && !(fiveWords) && !(dictWords)) {
-            System.out.println("Line doesn't comply to any rule");
+        if (count == list.size()) {
+            System.out.println("Line doesn't comply any rule");
         }
     }
 
@@ -43,9 +36,13 @@ public class Main {
         try {
             // Initialize the line.
             String[] words = Initialize.setLine();
-            // Show, to what rule does the line comply.
-            showInfo(VerifyNoNumbers.isNotNumbers(words), VerifyOnlyNumbers.isOnlyNumbers(words),
-                    VerifyFiveWords.isFiveWords(words), VerifyWords.isWordsBelong(words));
+            // Set list of boolean values - results of checking rules.
+            ArrayList<Boolean> array = new ArrayList<>();
+            array.add(VerifyNoNumbers.isNotNumbers(words));
+            array.add(VerifyOnlyNumbers.isOnlyNumbers(words));
+            array.add(VerifyFiveWords.isFiveWords(words));
+            array.add(VerifyWords.isWordsBelong(words));
+            notAnyRule(array);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return;

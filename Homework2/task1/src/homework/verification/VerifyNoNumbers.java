@@ -7,8 +7,8 @@ package homework.verification;
 public class VerifyNoNumbers {
 
     /**
-     * Method isNotNumbers gets array of words from the line an checks every
-     * word to have no numbers.
+     * Method isNotNumbers gets array of words from the line, checks every
+     * word to have no numbers and outputs result of check.
      *
      * @param words array of words from the line
      * @return boolean value: true - if there are no numbers
@@ -20,8 +20,8 @@ public class VerifyNoNumbers {
                     return false;
                 }
             }
-
         }
+        System.out.println("The line has no numbers");
         return true;
     }
 }

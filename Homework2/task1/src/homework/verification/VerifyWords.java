@@ -13,7 +13,7 @@ public class VerifyWords {
 
     /**
      * Method isWordsBelong gets array of words from the line and verifies that there
-     * are words from dictionary.
+     * are words from dictionary and outputs result of check.
      *
      * @param words array of words from the line.
      * @return boolean value: true - if there are words from dictionary
@@ -22,6 +22,7 @@ public class VerifyWords {
         for (String s : words) {
             for (int i = 0; i < dictionary.length; i++) {
                 if (s.equals(dictionary[i])) {
+                    System.out.println("The line has word(s) from dictionary");
                     return true;
                 }
             }

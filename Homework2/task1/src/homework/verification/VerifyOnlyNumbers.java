@@ -8,7 +8,7 @@ public class VerifyOnlyNumbers {
 
     /**
      * Method isOnlyNumbers gets array of words from the line an checks
-     * if there are only numbers.
+     * if there are only numbers and outputs result of check.
      *
      * @param words array of words from the line
      * @return boolean value: true - if there are only numbers
@@ -24,6 +24,7 @@ public class VerifyOnlyNumbers {
         } else {
             return false;
         }
+        System.out.println("The line has only numbers");
         return true;
     }
 }
