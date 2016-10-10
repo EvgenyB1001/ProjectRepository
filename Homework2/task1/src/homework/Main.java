@@ -35,13 +35,19 @@ public class Main {
     public static void main(String[] args) {
         try {
             // Initialize the line.
-            String[] words = Initialize.setLine();
+            Initialize initializer = new Initialize();
+            String[] words = initializer.setLine();
+            // Creates object, that verifies the line
+            VerifyNoNumbers noNumbers = new VerifyNoNumbers();
+            VerifyOnlyNumbers onlyNumbers = new VerifyOnlyNumbers();
+            VerifyFiveWords fiveWords = new VerifyFiveWords();
+            VerifyWords dictWords = new VerifyWords();
             // Set list of boolean values - results of checking rules.
             ArrayList<Boolean> array = new ArrayList<>();
-            array.add(VerifyNoNumbers.isNotNumbers(words));
-            array.add(VerifyOnlyNumbers.isOnlyNumbers(words));
-            array.add(VerifyFiveWords.isFiveWords(words));
-            array.add(VerifyWords.isWordsBelong(words));
+            array.add(noNumbers.isNotNumbers(words));
+            array.add(onlyNumbers.isOnlyNumbers(words));
+            array.add(fiveWords.isFiveWords(words));
+            array.add(dictWords.isWordsBelong(words));
             notAnyRule(array);
         } catch (Exception e) {
             System.err.println(e.getMessage());

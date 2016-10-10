@@ -15,7 +15,7 @@ public class Initialize {
      *
      * @return array of words from the input line
      */
-    public static String[] setLine() throws Exception {
+    public  String[] setLine() throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Set line");
         String line = scanner.nextLine();

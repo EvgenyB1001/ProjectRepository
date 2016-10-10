@@ -13,7 +13,7 @@ public class VerifyOnlyNumbers {
      * @param words array of words from the line
      * @return boolean value: true - if there are only numbers
      */
-    public static boolean isOnlyNumbers(String[] words) {
+    public boolean isOnlyNumbers(String[] words) {
         // if length is 1, then in line there are only symbols and no whitespaces and commas
         if (words.length == 1) {
             for (int i = 0; i < words[0].length(); i++) {

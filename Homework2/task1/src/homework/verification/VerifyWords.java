@@ -18,7 +18,7 @@ public class VerifyWords {
      * @param words array of words from the line.
      * @return boolean value: true - if there are words from dictionary
      */
-    public static boolean isWordsBelong(String[] words) {
+    public boolean isWordsBelong(String[] words) {
         for (String s : words) {
             for (int i = 0; i < dictionary.length; i++) {
                 if (s.equals(dictionary[i])) {

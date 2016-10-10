@@ -13,7 +13,7 @@ public class VerifyFiveWords {
      * @param words array of words from the line.
      * @return boolean value: true - if there are more than five words.
      */
-    public static boolean isFiveWords(String[] words) {
+    public boolean isFiveWords(String[] words) {
         int count = 0;
         for (String s : words) {
             if (!s.equals("")) {

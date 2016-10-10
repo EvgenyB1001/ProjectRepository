@@ -13,7 +13,7 @@ public class VerifyNoNumbers {
      * @param words array of words from the line
      * @return boolean value: true - if there are no numbers
      */
-    public static boolean isNotNumbers(String[] words) throws Exception {
+    public boolean isNotNumbers(String[] words) throws Exception {
         for (String s : words) {
             for (int i = 0; i < s.length(); i++) {
                 if (Character.isDigit(s.charAt(i))) {
