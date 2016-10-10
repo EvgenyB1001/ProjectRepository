@@ -29,7 +29,7 @@ public class Product {
 
     /**
      * Constructor Product create object of product, gets input parameters
-     * of product and adds information about input types of product.
+     * of product.
      *
      * @param type  type of product
      * @param name  name of product
