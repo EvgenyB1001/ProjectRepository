@@ -10,7 +10,10 @@ import java.util.ArrayList;
 public abstract class Command {
 
     /**
-     * Method performCommand will be overridden
+     * Method verifyAndExecute is overridden by inheritors.
+     *
+     * @param line line of command
+     * @param list list of created command
      */
-    public abstract void checkCommand(String line, ArrayList<Product> list);
+    public abstract void verifyAndExecute(String line, ArrayList<Product> list);
 }

@@ -44,7 +44,7 @@ public class CountTypes extends Command {
      * @param products list of created products
      */
     @Override
-    public void checkCommand(String line, ArrayList<Product> products) {
+    public void verifyAndExecute(String line, ArrayList<Product> products) {
         if (line.equals(COMMAND_COUNT_TYPES)) {
             getCountTypes(products);
         }

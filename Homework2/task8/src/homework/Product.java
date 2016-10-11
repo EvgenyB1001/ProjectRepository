@@ -10,12 +10,12 @@ public class Product {
     /**
      * The type of the product
      */
-    private String type;
+    private String type = new String();
 
     /**
      * The name of the product
      */
-    private String name;
+    private String name = new String();
 
     /**
      * The count of the products
@@ -29,19 +29,19 @@ public class Product {
 
     /**
      * Constructor Product create object of product, gets input parameters
-     * of product.
+     * of product and adds information about input types of product.
      *
      * @param type  type of product
      * @param name  name of product
      * @param count count of products
      * @param cost  cost of one of the product
      */
-    public Product(String type, String name, int count, double cost) {
+    public Product(String type, String name, int count, BigDecimal cost) {
 
         this.type = type;
         this.name = name;
         this.count = count;
-        this.cost = BigDecimal.valueOf(cost);
+        this.cost = cost;
     }
 
     /**

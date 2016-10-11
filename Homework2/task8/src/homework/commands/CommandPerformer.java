@@ -22,9 +22,8 @@ public class CommandPerformer {
         do {
             System.out.println("Set command (input 'exit' to exit):");
             line = scanner.nextLine();
-            // Calls classes of commands to check input command
             for (Command c : commands) {
-                c.checkCommand(line, products);
+                c.verifyAndExecute(line, products);
             }
         } while (!(line.equals("exit")));
         System.out.println("Thanks for using our program");

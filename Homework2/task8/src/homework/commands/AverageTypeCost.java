@@ -46,7 +46,7 @@ public class AverageTypeCost extends Command {
      * @param products list of created products
      */
     @Override
-    public void checkCommand(String line, ArrayList<Product> products) {
+    public void verifyAndExecute(String line, ArrayList<Product> products) {
         if (line.matches("^average price\\s\\w*$")) {
             String[] params = line.split(" ");
             getAveragePriceType(params[2], products);

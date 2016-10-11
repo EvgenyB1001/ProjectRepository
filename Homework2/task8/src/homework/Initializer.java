@@ -1,5 +1,6 @@
 package homework;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -22,19 +23,29 @@ public class Initializer {
      */
     public void setProduct() {
         String type, name;
-        int count;
-        double cost;
+        int count = 0;
+        BigDecimal cost = new BigDecimal(0);
         Scanner scanner = new Scanner(System.in);
-        String solution;
+        String solution, current;
+        boolean apply = false;
         do {
             System.out.println("Set product's type");
             type = scanner.next();
             System.out.println("Set product's name");
             name = scanner.next();
-            System.out.println("Set product's count");
-            count = scanner.nextInt();
-            System.out.println("Set product's cost");
-            cost = scanner.nextDouble();
+            // If there are invalid input, user sets parameters again
+            do {
+                try {
+                    System.out.println("Set product's count");
+                    count = scanner.nextInt();
+                    System.out.println("Set product's cost");
+                    cost = scanner.nextBigDecimal();
+                    apply = true;
+                } catch (InputMismatchException e) {
+                    current = scanner.next();
+                    System.out.println("Line '" + current + "' is not valid. Try again");
+                }
+            } while (!apply);
             System.out.println("Do you want to set another product? (Input 'yes' to repeat input, any key to continue)");
             solution = scanner.next();
             list.add(new Product(type, name, count, cost));
