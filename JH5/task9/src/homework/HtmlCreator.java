@@ -135,7 +135,7 @@ public class HtmlCreator {
     /**
      * Method convertToKb convert size in bytes to Kb
      * If size less the 1 Kb, it returns 1.
-     * If remainder of the division is more than half of 1 kb
+     * If remainder of the division is more than half of 1024
      * it rounds result to the nearest bigger integer value.
      *
      * @param size value in bytes of size of the file
