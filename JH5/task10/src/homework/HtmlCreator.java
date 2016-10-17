@@ -1,8 +1,5 @@
 package homework;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Class HtnlCreator creates html code and returns string of html code
  */
@@ -38,62 +35,35 @@ public class HtmlCreator {
     private static final String FOOTER = "</table>\n </body>\n </html>\n";
 
     /**
-     * Body of the html code
+     * Contains body of html code
      */
-    private String HTML = "";
+    private String html = "";
 
     /**
      * Method getHtml returns full html code of html-table
      */
     public String getHtml() {
-        return HTML;
+        return HEADER + html + FOOTER;
     }
 
     /**
-     * Constructor HtmlCreator gets collection of ip addresses and creates
-     * a full html code of html table.
+     * Method addAddress gets ip address and their request time, set this data to another
+     * line of html-table.
      *
-     * @param addresses collection of ip addresses
+     * @param server ip addresses
+     * @param time   time of request
      */
-    public HtmlCreator (HashMap<String, Integer> addresses) {
-        int max = 0;
-        // Searching for the maximal time
-        for (Map.Entry<String, Integer> ip : addresses.entrySet()) {
-            if (ip.getValue() > max) {
-                max = ip.getValue();
-            }
-        }
-        // Create another line of table
-        setLine(addresses, max);
-        // Create full html code
-        HTML = HEADER + HTML + FOOTER;
-    }
-
-    /**
-     * Method setLine gets collection of ip addresses and maximal time,
-     * depending on maximal time set color of line, creates another line of table.
-     *
-     * @param addresses collection of ip addresses
-     * @param max maximal time of request
-     */
-    private void setLine(HashMap<String, Integer> addresses, int max) {
-        int count = 0;
-        for (Map.Entry<String, Integer> ip : addresses.entrySet()) {
-            // if there are maximal request time, color of line is red
-            if (ip.getValue() == max) {
-                HTML += "<tr bgcolor = \"" + COL_MAX_COLOR + "\" width=\"530\"><td>" + ip.getKey() + "</td><td>"
-                        + ip.getValue() + "</td></tr>\n";
-            } else {
-                count++;
-                // Set color of line depends on there order
-                if (count % 2 != 0) {
-                    HTML += "<tr bgcolor = \"" + COL1_COLOR + "\" width=\"530\"><td>" + ip.getKey() + "</td><td>"
-                            + ip.getValue() + "</td></tr>\n";
-                } else {
-                    HTML += "<tr bgcolor = \"" + COL2_COLOR + "\" width=\"530\"><td>" + ip.getKey() + "</td><td>"
-                            + ip.getValue() + "</td></tr>\n";
-                }
-            }
+    public void addAddress(String server, int time, int max, int count) {
+        // Creates another line of table
+        if (time == max) {
+            html += "<tr bgcolor = \"" + COL_MAX_COLOR + "\" width=\"530\"><td>" + server + "</td><td>"
+                    + time + "</td></tr>\n";
+        } else {
+            // Sets color of line depends on their order
+            html += "<tr bgcolor = \"";
+            html += (count % 2 != 0) ? COL1_COLOR : COL2_COLOR;
+            html += "\" width=\"530\"><td>" + server + "</td><td>"
+                    + time + "</td></tr>\n";
         }
     }
 }

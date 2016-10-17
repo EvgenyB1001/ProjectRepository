@@ -1,7 +1,7 @@
 package homework;
 
 import java.io.*;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class main has entry point to the program. Program create html-table,
@@ -11,9 +11,9 @@ import java.util.HashMap;
 public class Main {
 
     /**
-     * Address of working directory
+     * Path to working directory
      */
-    public static final String ADDRESS = "C:\\Users\\777\\IdeaProjects\\task10\\src\\homework\\";
+    public static final String DIR_PATH = "C:\\Users\\777\\IdeaProjects\\task10\\src\\homework\\";
 
     /**
      * Name of html file
@@ -33,50 +33,41 @@ public class Main {
      * @param args array of values of ip addresses
      */
     public static void main(String[] args) {
-        // Verifies, if there parameters from command line
         try {
+            FilePerformer performer = new FilePerformer();
             // If there are no parameters from command line, program gets parameters from definite file
             if (args.length == 0) {
-                ReaderFile readerFile = new ReaderFile(ADDRESS + INPUT_FILE_NAME);
-                HtmlCreator creator = new HtmlCreator(new Ping(readerFile.getIpAddresses()).getPing());
-                WriterFile(creator.getHtml());
+                setAndCreateHtml(performer.readFile(DIR_PATH + INPUT_FILE_NAME), performer);
             } else {
-                // If there are parameters, create html code with this parameters
-                HtmlCreator creator = new HtmlCreator(new Ping(convertToMapAddresses(args)).getPing());
-                WriterFile(creator.getHtml());
+                setAndCreateHtml(args, performer);
             }
         } catch (IOException e) {
-            System.out.println("Output exception");
+            System.err.println(e.getMessage());
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
 
     /**
-     * Method convertToMapAddresses convert array of ip addresses to HashMap, and returns
-     * it.
+     * Method gets array of ip addresses and object of FilePerformer, send them to definite
+     * objects, that emulate ping and create html table
      *
-     * @param args array of values of ip addresses
-     * @return ip addresses in format HashMap
+     * @param data      array of ip addresses
+     * @param performer object, that works with files
      */
-    private static HashMap<String, Integer> convertToMapAddresses(String[] args) {
-        HashMap<String, Integer> addresses = new HashMap<>();
-        for (String s : args) {
-            addresses.put(s, 0);
+    public static void setAndCreateHtml(String[] data, FilePerformer performer) throws Exception {
+        HtmlCreator creator = new HtmlCreator();
+        Ping ping = new Ping();
+        DataKeeper keeper = new DataKeeper();
+        for (String address : data) {
+            keeper.setNewData(address, ping.getPing(address));
         }
-        return addresses;
-    }
-
-    /**
-     * Method WriterFile create (if there no such file) or rewrite html file
-     * with current html code
-     *
-     * @param html string of html code
-     */
-    private static void WriterFile(String html) throws Exception {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(ADDRESS + OUTPUT_FILE_NAME));
-        writer.write(html);
-        writer.flush();
-        writer.close();
+        int max = keeper.getMaxTime();
+        int count = 1;
+        for (Map.Entry<String, Integer> address : keeper.getIpCollection().entrySet()) {
+            creator.addAddress(address.getKey(), address.getValue(), max, count);
+            count++;
+        }
+        performer.writeFile(DIR_PATH + OUTPUT_FILE_NAME, creator.getHtml());
     }
 }

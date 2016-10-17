@@ -58,13 +58,13 @@ public class HtmlCreator {
     /**
      * Contains full html code
      */
-    private String HTML = "";
+    private String html = "";
 
     /**
      * Method getHtml returns full html code of html-table
      */
     public String getHtml() {
-        return HTML;
+        return html;
     }
 
     /**
@@ -85,7 +85,7 @@ public class HtmlCreator {
             count++;
             setLineOfFile(file, attributes, count);
         }
-        HTML = HEADER + HTML + FOOTER;
+        html = HEADER + html + FOOTER;
     }
 
     /**
@@ -112,15 +112,16 @@ public class HtmlCreator {
         long size = 0;
         if (file.isDirectory()) {
             File[] files = file.listFiles();
-            if (files != null) {
-                for (File newFile : files) {
-                    if (newFile.isFile()) {
-                        size += newFile.length();
-                    }
-                    // Observes every inserted directory
-                    if (newFile.isDirectory()) {
-                        size += getSize(newFile);
-                    }
+            if (files == null) {
+                return 0;
+            }
+            for (File newFile : files) {
+                if (newFile.isFile()) {
+                    size += newFile.length();
+                }
+                // Observes every inserted directory
+                if (newFile.isDirectory()) {
+                    size += getSize(newFile);
                 }
             }
         }
@@ -168,16 +169,9 @@ public class HtmlCreator {
             type = "DIR";
         }
         // Verify, what background color should be
-        if (count % 2 != 0) {
-            HTML += "<tr bgcolor = \"" + COL1_COLOR + "\"><td>" + file.getName() + "</td><td>"
-                    + type + "</td><td>"
-                    + convertDate(attributes.creationTime().toString()) + "</td><td>"
-                    + convertToKb(getSize(file)) + "</td></tr>\n";
-        } else {
-            HTML += "<tr bgcolor = \"" + COL2_COLOR + "\"><td>" + file.getName() + "</td><td>"
-                    + type + "</td><td>"
-                    + convertDate(attributes.creationTime().toString()) + "</td><td>"
-                    + convertToKb(getSize(file)) + "</td></tr>\n";
-        }
+        html +=  "<tr bgcolor = \"" + ((count % 2 != 0) ? COL1_COLOR  : COL2_COLOR) + "\"><td>" + file.getName() + "</td><td>"
+                + type + "</td><td>"
+                + convertDate(attributes.creationTime().toString()) + "</td><td>"
+                + convertToKb(getSize(file)) + "</td></tr>\n";
     }
 }
