@@ -6,8 +6,10 @@ package homework;
 public class Ping {
 
     /**
-     * Method getPing returns request time
+     * Method getPing gets ip address and returns random integer value (10 - 500)
+     * as request time
      *
+     * @param address ip address
      * @return int request time
      */
     public int getPing(String address) {

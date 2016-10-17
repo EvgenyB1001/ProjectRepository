@@ -47,13 +47,14 @@ public class HtmlCreator {
     }
 
     /**
-     * Method addAddress gets ip address and their request time, set this data to another
+     * Method addDataLine gets ip address, their request time and count of line, set this data to another
      * line of html-table.
      *
      * @param server ip addresses
      * @param time   time of request
+     * @param count count of line
      */
-    public void addAddress(String server, int time, int max, int count) {
+    public void addDataLine(String server, int time, int max, int count) {
         // Creates another line of table
         if (time == max) {
             html += "<tr bgcolor = \"" + COL_MAX_COLOR + "\" width=\"530\"><td>" + server + "</td><td>"

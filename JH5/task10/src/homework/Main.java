@@ -65,7 +65,7 @@ public class Main {
         int max = keeper.getMaxTime();
         int count = 1;
         for (Map.Entry<String, Integer> address : keeper.getIpCollection().entrySet()) {
-            creator.addAddress(address.getKey(), address.getValue(), max, count);
+            creator.addDataLine(address.getKey(), address.getValue(), max, count);
             count++;
         }
         performer.writeFile(DIR_PATH + OUTPUT_FILE_NAME, creator.getHtml());
