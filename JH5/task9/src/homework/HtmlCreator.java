@@ -32,7 +32,7 @@ public class HtmlCreator {
             "border-collapse: collapse;\n" +
             "}\n" +
             "table thead {\n" +
-            "border-bottom: 4px solid #ffffff;\n" +
+            "border-bottom: 4px solid " + BORDER_COLOR + ";\n" +
             "}\n" +
             "table td {\n" +
             "padding-left: 9px;\n" +
@@ -40,7 +40,6 @@ public class HtmlCreator {
             "</style>\n" +
             "<table border=1 bordercolor =\"" + BORDER_COLOR + "\"CELLSPACING = 0" +
             "cellpadding=\"1\"  width=\"530\" height=\"130\" align = center>\n " +
-            "<tr bgcolor=\"" + HEAD_COLOR + "\"align = center valign = top>\n " +
             "<thead>\n" +
             "<tr valign=\"top\" bgcolor =\"" + HEAD_COLOR + "\" align = center height = \"30\"> \n" +
             "<th>ИМЯ</th>\n" +
@@ -57,7 +56,7 @@ public class HtmlCreator {
     private static final String FOOTER = "</tbody>\n </table>\n </body>\n </html>\n";
 
     /**
-     * Body of the html code
+     * Contains full html code
      */
     private String HTML = "";
 
@@ -79,11 +78,10 @@ public class HtmlCreator {
         // Array of files, that exist in directory
         File[] listOfFiles = folder.listFiles();
         int count = 0;
-        Path p;
+        // Variable of attributes of the file
         BasicFileAttributes attributes;
         for (File file : listOfFiles) {
-            p = file.toPath();
-            attributes = Files.readAttributes(p, BasicFileAttributes.class);
+            attributes = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
             count++;
             setLineOfFile(file, attributes, count);
         }
