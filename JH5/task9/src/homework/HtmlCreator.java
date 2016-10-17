@@ -108,7 +108,7 @@ public class HtmlCreator {
      * Method get file and calculate size in Kb in cases of file or directory
      *
      * @param file file, that should be observed
-     * @return size of this file in Kb
+     * @return size of this file in bytes
      */
     private long getSize(File file) {
         long size = 0;
