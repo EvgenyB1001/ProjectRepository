@@ -4,10 +4,9 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Class FilePerformer works with files: reads file, verifies and return list of ip addresses,
- * writes definite file.
+ * Class FilePerformer reads definite file and return array of ip addresses
  */
-public class FilePerformer {
+public class ReaderFile {
 
     /**
      * Method ReadFile reads definite file with path, got as parameter, and returns
@@ -28,19 +27,5 @@ public class FilePerformer {
             ipAddresses[i] = currIpAddresses.get(i);
         }
         return ipAddresses;
-    }
-
-    /**
-     * Method WriterFile create (if there no such file) or rewrite html file
-     * with current html code
-     *
-     * @param filePath path to output file
-     * @param html     string of html code
-     */
-    public void writeFile(String filePath, String html) throws Exception {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-        writer.write(html);
-        writer.flush();
-        writer.close();
     }
 }

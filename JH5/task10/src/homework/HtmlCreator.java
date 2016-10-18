@@ -52,7 +52,8 @@ public class HtmlCreator {
      *
      * @param server ip addresses
      * @param time   time of request
-     * @param count count of line
+     * @param count  count of line
+     * @param max    value of maximal request time
      */
     public void addDataLine(String server, int time, int max, int count) {
         // Creates another line of table

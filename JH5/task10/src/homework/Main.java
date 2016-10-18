@@ -34,12 +34,12 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            FilePerformer performer = new FilePerformer();
+            ReaderFile reader = new ReaderFile();
             // If there are no parameters from command line, program gets parameters from definite file
             if (args.length == 0) {
-                setAndCreateHtml(performer.readFile(DIR_PATH + INPUT_FILE_NAME), performer);
+                setAndCreateHtml(reader.readFile(DIR_PATH + INPUT_FILE_NAME));
             } else {
-                setAndCreateHtml(args, performer);
+                setAndCreateHtml(args);
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -52,11 +52,11 @@ public class Main {
      * Method gets array of ip addresses and object of FilePerformer, send them to definite
      * objects, that emulate ping and create html table
      *
-     * @param data      array of ip addresses
-     * @param performer object, that works with files
+     * @param data array of ip addresses
      */
-    public static void setAndCreateHtml(String[] data, FilePerformer performer) throws Exception {
+    public static void setAndCreateHtml(String[] data) throws Exception {
         HtmlCreator creator = new HtmlCreator();
+        WriterFile writer = new WriterFile();
         Ping ping = new Ping();
         DataKeeper keeper = new DataKeeper();
         for (String address : data) {
@@ -68,6 +68,6 @@ public class Main {
             creator.addDataLine(address.getKey(), address.getValue(), max, count);
             count++;
         }
-        performer.writeFile(DIR_PATH + OUTPUT_FILE_NAME, creator.getHtml());
+        writer.writeFile(DIR_PATH + OUTPUT_FILE_NAME, creator.getHtml());
     }
 }

@@ -28,7 +28,7 @@ public class DataKeeper {
      * @param time request time
      */
     public void setNewData(String ip, int time) {
-        if (ip.matches(REG_EX_IPV4)) {
+        if (validateIp(ip)) {
             data.put(ip, time);
         } else {
             System.out.println("Incorrect ip address " + ip);
