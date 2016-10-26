@@ -76,7 +76,7 @@ public class Bus implements Moveable {
     /**
      * Method emulates moving to the next point, which coordinates got as
      * parameters. It calculates current travel time and cost (cost depends on count of people
-     * with coefficient 0.5)
+     * with coefficient 0.25)
      *
      * @param x coordinate x
      * @param y coordinate y
@@ -89,7 +89,7 @@ public class Bus implements Moveable {
         this.y = y;
         travelTime += Math.sqrt(coordX * coordX + coordY * coordY) / averageSpeed;
         travelCost += Math.sqrt(coordX * coordX + coordY * coordY) * FUEL_CONSUMPTION * fuelPrice.doubleValue()
-                * (0.5 * countPeople);
+                / (0.25 * countPeople);
     }
 
     /**
