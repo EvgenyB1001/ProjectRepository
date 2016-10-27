@@ -20,7 +20,7 @@ public class Car implements Moveable {
     /**
      * Name of the way of travelling
      */
-    public static final String NAME = "Bus";
+    public static final String NAME = "Car";
 
     /**
      * Current coordinates
@@ -49,9 +49,13 @@ public class Car implements Moveable {
      * @param averageSpeed average speed of travelling afoot
      * @param fuelPrice    fuel price
      */
-    public Car(double averageSpeed, BigDecimal fuelPrice) {
-        this.averageSpeed = averageSpeed;
-        this.fuelPrice = fuelPrice;
+    public Car(double averageSpeed, BigDecimal fuelPrice) throws Exception {
+        if (averageSpeed > 0 && fuelPrice.doubleValue() > 0) {
+            this.averageSpeed = averageSpeed;
+            this.fuelPrice = fuelPrice;
+        } else {
+            throw new Exception("Incorrect parameters");
+        }
     }
 
     /**

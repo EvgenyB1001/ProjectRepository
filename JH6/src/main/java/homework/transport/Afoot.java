@@ -30,8 +30,12 @@ public class Afoot implements Moveable {
      *
      * @param averageSpeed average speed of travelling afoot
      */
-    public Afoot(double averageSpeed) {
-        this.averageSpeed = averageSpeed;
+    public Afoot(double averageSpeed) throws Exception {
+        if (averageSpeed > 0) {
+            this.averageSpeed = averageSpeed;
+        } else {
+            throw new Exception("Incorrect speed \"" + averageSpeed + "\"");
+        }
     }
 
     /**

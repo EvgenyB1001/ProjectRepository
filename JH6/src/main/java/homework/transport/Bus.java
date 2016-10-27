@@ -55,10 +55,14 @@ public class Bus implements Moveable {
      * @param countPeople  count of people
      * @param fuelPrice    fuel price
      */
-    public Bus(double averageSpeed, int countPeople, BigDecimal fuelPrice) {
-        this.averageSpeed = averageSpeed;
-        this.countPeople = countPeople;
-        this.fuelPrice = fuelPrice;
+    public Bus(double averageSpeed, int countPeople, BigDecimal fuelPrice) throws Exception {
+        if (averageSpeed > 0 && fuelPrice.doubleValue() > 0 && countPeople > 0) {
+            this.averageSpeed = averageSpeed;
+            this.countPeople = countPeople;
+            this.fuelPrice = fuelPrice;
+        } else {
+            throw new Exception("Incorrect parameters");
+        }
     }
 
     /**
