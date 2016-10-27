@@ -28,11 +28,6 @@ public class Bus implements Moveable {
     private int countPeople = 0;
 
     /**
-     * Current coordinates
-     */
-    private double x = 0.0, y = 0.0;
-
-    /**
      * Price of fuel in USD
      */
     private BigDecimal fuelPrice = new BigDecimal(0.0);
@@ -46,6 +41,11 @@ public class Bus implements Moveable {
      * Current cost of travel (USD)
      */
     private double travelCost = 0.0;
+
+    /**
+     * Object, that calculate distance
+     */
+    private Router router = new Router();
 
     /**
      * Constructor creates the vehicle, set average speed, count of people,
@@ -73,8 +73,7 @@ public class Bus implements Moveable {
      */
     @Override
     public void setStartCoordinates(double x, double y) {
-        this.x = x;
-        this.y = y;
+        router.setStartCoordinates(x, y);
     }
 
     /**
@@ -87,12 +86,9 @@ public class Bus implements Moveable {
      */
     @Override
     public void moveToNextCheckpoint(double x, double y) {
-        double coordX = Math.abs(x - this.x);
-        double coordY = Math.abs(y - this.y);
-        this.x = x;
-        this.y = y;
-        travelTime += Math.sqrt(coordX * coordX + coordY * coordY) / averageSpeed;
-        travelCost += Math.sqrt(coordX * coordX + coordY * coordY) * FUEL_CONSUMPTION * fuelPrice.doubleValue()
+        double distance = router.getDistance(x, y);
+        travelTime += distance / averageSpeed;
+        travelCost += distance * FUEL_CONSUMPTION * fuelPrice.doubleValue()
                 / (0.25 * countPeople);
     }
 

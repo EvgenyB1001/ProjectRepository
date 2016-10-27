@@ -63,7 +63,6 @@ public class Main {
             moveables.put(Car.getName(), new Car(CAR_SPEED, FUEL_PRICE));
             moveables.put(Bicycle.getName(), new Bicycle(BICYCLE_SPEED));
             moveables.put(Bus.getName(), new Bus(BUS_SPEED, COUNT_BUS_PASSENGERS, FUEL_PRICE));
-            System.out.println(moveables.size());
             Statistic statistic = new Statistic();
             for (Map.Entry<String, Moveable> vehicle : moveables.entrySet()) {
                 moveVehicles(vehicle, checkpoints);

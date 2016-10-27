@@ -16,14 +16,14 @@ public class Bicycle implements Moveable {
     public static final String NAME = "Bicycle";
 
     /**
-     * Current coordinates
-     */
-    private double x = 0.0, y = 0.0;
-
-    /**
      * Current travel time (hours)
      */
     private double travelTime = 0.0;
+
+    /**
+     * Object, that calculate distance
+     */
+    private Router router = new Router();
 
     /**
      * Constructor creates the vehicle, set average speed
@@ -46,8 +46,7 @@ public class Bicycle implements Moveable {
      */
     @Override
     public void setStartCoordinates(double x, double y) {
-        this.x = x;
-        this.y = y;
+        router.setStartCoordinates(x, y);
     }
 
     /**
@@ -59,11 +58,7 @@ public class Bicycle implements Moveable {
      */
     @Override
     public void moveToNextCheckpoint(double x, double y) {
-        double coordX = Math.abs(x - this.x);
-        double coordY = Math.abs(y - this.y);
-        this.x = x;
-        this.y = y;
-        travelTime += Math.sqrt(coordX * coordX + coordY * coordY) / averageSpeed;
+        travelTime += router.getDistance(x, y) / averageSpeed;
     }
 
     /**
