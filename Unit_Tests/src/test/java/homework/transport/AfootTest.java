@@ -16,6 +16,12 @@ public class AfootTest {
         router.setStartCoordinates(0.0, 0.0);
     }
 
+    @Test
+    public void tstPositiveAfootCreation() throws Exception {
+        Afoot afoot = new Afoot(1.4);
+        assertNotNull(afoot);
+    }
+
     @Test(expected = Exception.class)
     public void tstNegativeSetIncorrectAfootSpeed() throws Exception {
         Afoot afoot = new Afoot(-1.4);
@@ -28,16 +34,5 @@ public class AfootTest {
         assertTrue(afoot.getTravelTime().equals("5 hours 0 minutes"));
     }
 
-    @Test
-    public void tstPositiveAddTravelTime() throws Exception {
-        setUp();
-        afoot.addAnotherTravelTime(10.0);
-        assertEquals(5.0, afoot.travelTime, 0.1);
-    }
 
-    @Test
-    public void tstPositiveAfootCreation() throws Exception {
-        Afoot afoot = new Afoot(1.4);
-        assertNotNull(afoot);
-    }
 }

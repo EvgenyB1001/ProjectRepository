@@ -18,7 +18,7 @@ public class Bicycle implements Moveable {
     /**
      * Current travel time (hours)
      */
-    public double travelTime = 0.0;
+    private double travelTime = 0.0;
 
     /**
      * Object, that calculate distance
@@ -66,7 +66,7 @@ public class Bicycle implements Moveable {
      *
      * @param distance another distance
      */
-    public void addAnotherTravelTime(double distance) {
+    private void addAnotherTravelTime(double distance) {
         travelTime += distance / averageSpeed;
     }
 

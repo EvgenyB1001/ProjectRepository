@@ -17,15 +17,15 @@ public class BicycleTest {
         router.setStartCoordinates(0.0, 0.0);
     }
 
-    @Test(expected = Exception.class)
-    public void tstNegativeSetIncorrectBicycleSpeed() throws Exception {
-        Bicycle bicycle = new Bicycle(-1.4);
-    }
-
     @Test
     public void tstPositiveBicycleCreation() throws Exception {
         Bicycle bicycle = new Bicycle(1.4);
         assertNotNull(bicycle);
+    }
+
+    @Test(expected = Exception.class)
+    public void tstNegativeSetIncorrectBicycleSpeed() throws Exception {
+        Bicycle bicycle = new Bicycle(-1.4);
     }
 
     @Test
@@ -33,12 +33,5 @@ public class BicycleTest {
         setUp();
         bicycle.moveToNextCheckpoint(10.0, 0.0);
         assertTrue(bicycle.getTravelTime().equals("5 hours 0 minutes"));
-    }
-
-    @Test
-    public void tstPositiveAddTravelTime() throws Exception {
-        setUp();
-        bicycle.addAnotherTravelTime(10.0);
-        assertEquals(5.0, bicycle.travelTime, 0.1);
     }
 }

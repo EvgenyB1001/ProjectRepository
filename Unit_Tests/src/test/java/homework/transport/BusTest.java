@@ -47,16 +47,9 @@ public class BusTest {
     }
 
     @Test
-    public void tstPositiveAddTravelTime() throws Exception {
+    public void tstPositiveGetTravelCost() throws Exception {
         setUp();
-        bus.addAnotherTravelTime(10.0);
-        assertEquals(5.0, bus.travelTime, 0.1);
-    }
-
-    @Test
-    public void tstPositiveAddTravelCost() throws Exception {
-        setUp();
-        bus.addAnotherTravelCost(10.0);
-        assertEquals(0.4, bus.travelCost, 0.1);
+        bus.moveToNextCheckpoint(10.0, 0.0);
+        assertEquals(0.4, bus.getTravelCost(), 0.1);
     }
 }

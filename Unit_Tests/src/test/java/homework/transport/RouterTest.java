@@ -15,6 +15,12 @@ public class RouterTest {
     }
 
     @Test
+    public void tstPositiveRouterCreation() throws Exception {
+        Router router = new Router();
+        assertNotNull(router);
+    }
+
+    @Test
     public void tstPositiveGetDistance() throws Exception {
         assertEquals(5.0, router.getDistance(1.0, 6.0), 0.1);
     }

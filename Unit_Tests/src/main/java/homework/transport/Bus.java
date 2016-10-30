@@ -35,12 +35,12 @@ public class Bus implements Moveable {
     /**
      * Current travel time (hours)
      */
-    public double travelTime = 0.0;
+    private double travelTime = 0.0;
 
     /**
      * Current cost of travel (USD)
      */
-    public double travelCost = 0.0;
+    private double travelCost = 0.0;
 
     /**
      * Object, that calculate distance
@@ -96,7 +96,7 @@ public class Bus implements Moveable {
      *
      * @param distance another distance
      */
-    public void addAnotherTravelTime(double distance) {
+    private void addAnotherTravelTime(double distance) {
         travelTime += distance / averageSpeed;
     }
 
@@ -105,7 +105,7 @@ public class Bus implements Moveable {
      *
      * @param distance another distance
      */
-    public void addAnotherTravelCost(double distance) {
+    private void addAnotherTravelCost(double distance) {
         travelCost += distance * FUEL_CONSUMPTION * fuelPrice.doubleValue()
                 / (0.25 * countPeople);
     }

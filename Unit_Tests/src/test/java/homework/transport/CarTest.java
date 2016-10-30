@@ -42,16 +42,9 @@ public class CarTest {
     }
 
     @Test
-    public void tstPositiveAddTravelTime() throws Exception {
+    public void tstPositiveGetTravelCost() throws Exception {
         setUp();
-        car.addAnotherTravelTime(10.0);
-        assertEquals(5.0, car.travelTime, 0.1);
-    }
-
-    @Test
-    public void tstPositiveAddTravelCost() throws Exception {
-        setUp();
-        car.addAnotherTravelCost(10.0);
-        assertEquals(10.0, car.travelCost, 0.1);
+        car.moveToNextCheckpoint(10.0, 0.0);
+        assertEquals(10.0, car.getTravelCost(), 0.1);
     }
 }
