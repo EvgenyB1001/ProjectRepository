@@ -9,17 +9,17 @@ public interface Moveable {
     /**
      * Method will be implemented by inherits
      */
-    void setStartCoordinates(double x, double y);
+    void setStartCoordinates(double x, double y) throws Exception;
 
     /**
      * Method will be implemented by inherits
      */
-    void moveToNextCheckpoint(double x, double y);
+    void moveToNextCheckpoint(double x, double y) throws Exception;
 
     /**
      * Method will be implemented by inherits
      */
-    String getTravelTime();
+    double getTravelTime();
 
     /**
      * Method will be implemented by inherits

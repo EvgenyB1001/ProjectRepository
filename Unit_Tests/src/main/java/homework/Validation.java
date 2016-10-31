@@ -29,4 +29,22 @@ public class Validation {
             throw new Exception("Incorrect count of coordinates");
         }
     }
+
+    /**
+     * Method validates coordinates of checkpoint. If coordinates is incorrect, it throws exception
+     *
+     * @param x coordinate x of checkpoints
+     * @param y coordinate x of checkpoints
+     */
+    public void validationCoordinates(double x, double y) throws Exception {
+        if (Double.compare(x, Double.NaN) == 0 || Double.compare(y, Double.NaN) == 0) {
+            throw new Exception("Incorrect \"NaN\" values of coordinates");
+        }
+        if (Double.compare(x, Double.POSITIVE_INFINITY) == 0 || Double.compare(y, Double.POSITIVE_INFINITY) == 0) {
+            throw new Exception("Incorrect \"POSITIVE_INFINITY\" values of coordinates");
+        }
+        if (Double.compare(x, Double.NEGATIVE_INFINITY) == 0 || Double.compare(y, Double.NEGATIVE_INFINITY) == 0) {
+            throw new Exception("Incorrect \"NEGATIVE_INFINITY\" values of coordinates");
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package homework.transport;
 
+import homework.Validation;
+
 import java.math.BigDecimal;
 
 /**
@@ -43,6 +45,11 @@ public class Car implements Moveable {
     private Router router = new Router();
 
     /**
+     * Object, that validates parameters
+     */
+    private Validation validation = new Validation();
+
+    /**
      * Constructor creates the vehicle, set average speed,
      * fuel price
      *
@@ -65,7 +72,8 @@ public class Car implements Moveable {
      * @param y coordinate y
      */
     @Override
-    public void setStartCoordinates(double x, double y) {
+    public void setStartCoordinates(double x, double y) throws Exception {
+        validation.validationCoordinates(x,y);
         router.setStartCoordinates(x, y);
     }
 
@@ -78,7 +86,8 @@ public class Car implements Moveable {
      * @param y coordinate y
      */
     @Override
-    public void moveToNextCheckpoint(double x, double y) {
+    public void moveToNextCheckpoint(double x, double y) throws Exception {
+        validation.validationCoordinates(x, y);
         double distance = router.getDistance(x, y);
         addAnotherTravelCost(distance);
         addAnotherTravelTime(distance);
@@ -103,13 +112,13 @@ public class Car implements Moveable {
     }
 
     /**
-     * Method returns current travel time in special format
+     * Method returns current travel time
      *
-     * @return line with current time
+     * @return current time
      */
     @Override
-    public String getTravelTime() {
-        return (int) (travelTime) + " hours " + Math.round((travelTime - (int) travelTime) * 60) + " minutes";
+    public double getTravelTime() {
+        return travelTime;
     }
 
     /**

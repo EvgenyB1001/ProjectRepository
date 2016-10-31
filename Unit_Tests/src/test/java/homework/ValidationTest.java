@@ -31,8 +31,19 @@ public class ValidationTest {
         validation.validationStartFinishPoints(checkpoints);
     }
 
+    @Test(expected = Exception.class)
+    public void tstValidationNullStartFinishPoints() throws Exception {
+        ArrayList<String[]> checkpoints = new ArrayList<>();
+        validation.validationStartFinishPoints(checkpoints);
+    }
+
     @Test (expected = Exception.class)
-    public void validationCountOfCoordinates() throws Exception {
+    public void tstValidationCountOfCoordinates() throws Exception {
         validation.validationCountOfCoordinates(new String[] {"2.3", "23.3", "32.4"});
+    }
+
+    @Test (expected = Exception.class)
+    public void tstValidationCoordinates() throws Exception {
+        validation.validationCoordinates(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
     }
 }

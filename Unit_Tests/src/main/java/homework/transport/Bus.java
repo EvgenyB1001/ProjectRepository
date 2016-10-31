@@ -1,5 +1,7 @@
 package homework.transport;
 
+import homework.Validation;
+
 import java.math.BigDecimal;
 
 /**
@@ -48,6 +50,11 @@ public class Bus implements Moveable {
     private Router router = new Router();
 
     /**
+     * Object, that validates parameters
+     */
+    private Validation validation = new Validation();
+
+    /**
      * Constructor creates the vehicle, set average speed, count of people,
      * fuel price
      *
@@ -72,25 +79,26 @@ public class Bus implements Moveable {
      * @param y coordinate y
      */
     @Override
-    public void setStartCoordinates(double x, double y) {
+    public void setStartCoordinates(double x, double y) throws Exception {
+        validation.validationCoordinates(x,y);
         router.setStartCoordinates(x, y);
     }
 
     /**
      * Method emulates moving to the next point, which coordinates got as
      * parameters. It calculates current travel time and cost (cost depends on count of people
-     * with coefficient 0.25)
+     * with coefficient 0.5)
      *
      * @param x coordinate x
      * @param y coordinate y
      */
     @Override
-    public void moveToNextCheckpoint(double x, double y) {
+    public void moveToNextCheckpoint(double x, double y) throws Exception {
+        validation.validationCoordinates(x, y);
         double distance = router.getDistance(x, y);
-        addAnotherTravelTime(distance);
         addAnotherTravelCost(distance);
+        addAnotherTravelTime(distance);
     }
-
     /**
      * Method adds travel time
      *
@@ -111,13 +119,13 @@ public class Bus implements Moveable {
     }
 
     /**
-     * Method returns current travel time in special format
+     * Method returns current travel time
      *
-     * @return line with current time
+     * @return current time
      */
     @Override
-    public String getTravelTime() {
-        return (int) (travelTime) + " hours " + Math.round((travelTime - (int) travelTime) * 60) + " minutes";
+    public double getTravelTime() {
+        return travelTime;
     }
 
     /**

@@ -17,11 +17,6 @@ public class BicycleTest {
         router.setStartCoordinates(0.0, 0.0);
     }
 
-    @Test
-    public void tstPositiveBicycleCreation() throws Exception {
-        assertNotNull(bicycle);
-    }
-
     @Test(expected = Exception.class)
     public void tstNegativeSetIncorrectBicycleSpeed() throws Exception {
         Bicycle bicycle = new Bicycle(-1.4);
@@ -30,6 +25,6 @@ public class BicycleTest {
     @Test
     public void tstPositiveGetTravelTime() throws Exception {
         bicycle.moveToNextCheckpoint(10.0, 0.0);
-        assertTrue(bicycle.getTravelTime().equals("5 hours 0 minutes"));
+        assertEquals(5.0, bicycle.getTravelTime(), 0.1);
     }
 }

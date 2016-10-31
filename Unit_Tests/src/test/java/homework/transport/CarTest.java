@@ -18,11 +18,6 @@ public class CarTest {
         router.setStartCoordinates(0.0, 0.0);
     }
 
-    @Test
-    public void tstPositiveCarCreation() throws Exception {
-        assertNotNull(car);
-    }
-
     @Test(expected = Exception.class)
     public void tstNegativeSetIncorrectCarSpeed() throws Exception {
         Car car = new Car(-1.4, new BigDecimal("2.1"));
@@ -36,7 +31,7 @@ public class CarTest {
     @Test
     public void tstPositiveGetTravelTime() throws Exception {
         car.moveToNextCheckpoint(10.0, 0.0);
-        assertTrue(car.getTravelTime().equals("5 hours 0 minutes"));
+        assertEquals(5.0, car.getTravelTime(), 0.1);
     }
 
     @Test

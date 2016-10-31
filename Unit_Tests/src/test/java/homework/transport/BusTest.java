@@ -18,11 +18,6 @@ public class BusTest {
         router.setStartCoordinates(0.0, 0.0);
     }
 
-    @Test
-    public void tstPositiveBusCreation() throws Exception {
-        assertNotNull(bus);
-    }
-
     @Test(expected = Exception.class)
     public void tstNegativeSetIncorrectBusSpeed() throws Exception {
         Bus bus = new Bus(-1.4, 10, new BigDecimal("2.1"));
@@ -41,7 +36,7 @@ public class BusTest {
     @Test
     public void tstPositiveGetTravelTime() throws Exception {
         bus.moveToNextCheckpoint(10.0, 0.0);
-        assertTrue(bus.getTravelTime().equals("5 hours 0 minutes"));
+        assertEquals(5.0, bus.getTravelTime(), 0.1);
     }
 
     @Test

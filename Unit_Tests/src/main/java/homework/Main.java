@@ -82,7 +82,8 @@ public class Main {
      * @param vehicle     list of vehicle
      * @param checkpoints list of checkpoints
      */
-    public static void moveVehicles(Map.Entry<String, Moveable> vehicle, ArrayList<String[]> checkpoints) {
+    public static void moveVehicles(Map.Entry<String, Moveable> vehicle,
+                                    ArrayList<String[]> checkpoints) throws Exception {
         double[] coordinates = new double[2];
         coordinates[0] = Double.parseDouble(checkpoints.get(0)[0]);
         coordinates[1] = Double.parseDouble(checkpoints.get(0)[1]);
