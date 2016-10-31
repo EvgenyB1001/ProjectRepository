@@ -19,7 +19,6 @@ public class BicycleTest {
 
     @Test
     public void tstPositiveBicycleCreation() throws Exception {
-        Bicycle bicycle = new Bicycle(1.4);
         assertNotNull(bicycle);
     }
 
@@ -30,7 +29,6 @@ public class BicycleTest {
 
     @Test
     public void tstPositiveGetTravelTime() throws Exception {
-        setUp();
         bicycle.moveToNextCheckpoint(10.0, 0.0);
         assertTrue(bicycle.getTravelTime().equals("5 hours 0 minutes"));
     }

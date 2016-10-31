@@ -23,15 +23,8 @@ public class ValidationTest {
         checkpoints.clear();
     }
 
-    @Test
-    public void tstPositiveValidationCreation() throws Exception {
-        setUp();
-        assertNotNull(validation);
-    }
-
     @Test (expected = Exception.class)
     public void tstValidationStartFinishPoints() throws Exception {
-        setUp();
         ArrayList<String[]> checkpoints = new ArrayList<>();
         checkpoints.add(new String[] {"2.2", "0.0"});
         checkpoints.add(new String[] {"2.2", "0.0"});
@@ -40,8 +33,6 @@ public class ValidationTest {
 
     @Test (expected = Exception.class)
     public void validationCountOfCoordinates() throws Exception {
-        setUp();
         validation.validationCountOfCoordinates(new String[] {"2.3", "23.3", "32.4"});
     }
-
 }

@@ -18,7 +18,6 @@ public class AfootTest {
 
     @Test
     public void tstPositiveAfootCreation() throws Exception {
-        Afoot afoot = new Afoot(1.4);
         assertNotNull(afoot);
     }
 
@@ -29,10 +28,7 @@ public class AfootTest {
 
     @Test
     public void tstPositiveGetTravelTime() throws Exception {
-        setUp();
         afoot.moveToNextCheckpoint(10.0, 0.0);
         assertTrue(afoot.getTravelTime().equals("5 hours 0 minutes"));
     }
-
-
 }

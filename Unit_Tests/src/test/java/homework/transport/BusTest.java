@@ -20,7 +20,6 @@ public class BusTest {
 
     @Test
     public void tstPositiveBusCreation() throws Exception {
-        Bus bus = new Bus(1.4, 10, new BigDecimal("2.1"));
         assertNotNull(bus);
     }
 
@@ -41,14 +40,12 @@ public class BusTest {
 
     @Test
     public void tstPositiveGetTravelTime() throws Exception {
-        setUp();
         bus.moveToNextCheckpoint(10.0, 0.0);
         assertTrue(bus.getTravelTime().equals("5 hours 0 minutes"));
     }
 
     @Test
     public void tstPositiveGetTravelCost() throws Exception {
-        setUp();
         bus.moveToNextCheckpoint(10.0, 0.0);
         assertEquals(0.4, bus.getTravelCost(), 0.1);
     }

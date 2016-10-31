@@ -20,7 +20,6 @@ public class CarTest {
 
     @Test
     public void tstPositiveCarCreation() throws Exception {
-        Car car = new Car(1.4, new BigDecimal("2.1"));
         assertNotNull(car);
     }
 
@@ -36,14 +35,12 @@ public class CarTest {
 
     @Test
     public void tstPositiveGetTravelTime() throws Exception {
-        setUp();
         car.moveToNextCheckpoint(10.0, 0.0);
         assertTrue(car.getTravelTime().equals("5 hours 0 minutes"));
     }
 
     @Test
     public void tstPositiveGetTravelCost() throws Exception {
-        setUp();
         car.moveToNextCheckpoint(10.0, 0.0);
         assertEquals(10.0, car.getTravelCost(), 0.1);
     }
