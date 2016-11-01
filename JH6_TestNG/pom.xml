@@ -24,6 +24,10 @@
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>AfootTestSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>BusTestSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>BicycleTestSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>CarTestSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

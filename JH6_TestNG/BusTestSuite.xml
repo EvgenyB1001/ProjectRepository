@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Bus_Test_Suite">
+    <test name="Router_Test" preserve-order="true">       
+        <classes>
+            <class name="homework.transport.RouterTest">
+                <methods>
+                    <include name="tstPositiveGetDistance()"/>                
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Bus_Test" preserve-order="true">       
+        <classes>
+            <class name="homework.transport.BusTest">
+            </class>
+        </classes>
+    </test>
+</suite>

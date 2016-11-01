@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Afoot_Test_Suite">
-    <test name="Afoot_Test" preserve-order="true">       
+<suite name="Other_Test_Suite">
+    <test name="Validation_Test" preserve-order="true">       
         <classes>
-            <class name="homework.transport.AfootTest">
-                <methods>
-                    <exclude name="tstPositiveGetTravelTime()"/>                
-                </methods>
+            <class name="homework.ValidationTest">
             </class>
         </classes>
     </test>
-    <test name="Bus_Test" preserve-order="true">       
+    <test name="Statistic_Test" preserve-order="true">       
         <classes>
-            <class name="homework.transport.BusTest">
-                <methods>
-                    <exclude name="tstPositiveGetTravelTime()"/>                
-                </methods>
+            <class name="homework.StatisticTest">
             </class>
         </classes>
     </test>
@@ -22,25 +16,7 @@
         <classes>
             <class name="homework.transport.RouterTest">
                 <methods>
-                    <include name="tstPositiveGetDistance()"/>                
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="Car_Test" preserve-order="true">       
-        <classes>
-            <class name="homework.transport.CarTest">
-                <methods>
-                    <exclude name="tstPositiveGetTravelTime()"/>                
-                </methods>
-            </class>
-        </classes>
-    </test>
-     <test name="Bicycle_Test" preserve-order="true">       
-        <classes>
-            <class name="homework.transport.BicycleTest">
-                <methods>
-                    <exclude name="tstPositiveGetTravelTime()"/>                
+                    <exclude name="tstPositiveGetDistance()"/>                
                 </methods>
             </class>
         </classes>
