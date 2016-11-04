@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Other_Test_Suite">
+    <test name="Validation_Test" preserve-order="true">       
+        <classes>
+            <class name="homework.ValidationTest">
+            </class>
+        </classes>
+    </test>
+    <test name="Statistic_Test" preserve-order="true">       
+        <classes>
+            <class name="homework.StatisticTest">
+            </class>
+        </classes>
+    </test>
+    <test name="Router_Test" preserve-order="true">       
+        <classes>
+            <class name="homework.transport.RouterTest">
+                <methods>
+                    <exclude name="tstPositiveGetDistance()"/>                
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
