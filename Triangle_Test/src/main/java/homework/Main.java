@@ -12,9 +12,9 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            Initializer initializer = new Initializer();
+            ReaderFile readerFile = new ReaderFile();
             TriangleTypeDetector detector = new TriangleTypeDetector();
-            double[] sides = initializer.initialize();
+            double[] sides = readerFile.read();
             System.out.println(detector.detectTriangle(sides[0], sides[1], sides[2]));
         } catch (InputMismatchException e) {
             System.out.println("Incorrect input data. Expected double input format");
