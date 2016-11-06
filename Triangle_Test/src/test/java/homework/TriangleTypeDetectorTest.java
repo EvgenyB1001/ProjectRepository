@@ -20,7 +20,7 @@ public class TriangleTypeDetectorTest {
                 {3.0, 4.0, 5.0},
                 {Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE},
                 {Double.MIN_NORMAL, Double.MIN_NORMAL, Double.MIN_NORMAL},
-                {Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE,}
+                {Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}
         };
     }
 
@@ -28,18 +28,29 @@ public class TriangleTypeDetectorTest {
     public Object[][] getIllegalValues() {
         return new Object[][]{
                 {1.6, 3.1, 5.3},
+                {-3, -4, -5},
                 {-3, 4, 5},
                 {3, -4, 5},
                 {3, 4, -5},
+                {0.0, 0.0, 0.0},
                 {0.0, 8.7, 7.3},
                 {8.7, 0.0, 7.3},
                 {7.3, 8.7, 0.0},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY},
                 {2.2, Double.POSITIVE_INFINITY, 2.2},
                 {Double.POSITIVE_INFINITY, 2.2, 2.2},
                 {2.2, 2.2, Double.POSITIVE_INFINITY},
+                {Double.NaN, Double.NaN, Double.NaN},
                 {3.2, Double.NaN, 3.7},
                 {Double.NaN, 3.2, 3.7},
                 {3.2, 3.7, Double.NaN},
+                {Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY},
+                {2.2, Double.NEGATIVE_INFINITY, 2.2},
+                {Double.NEGATIVE_INFINITY, 2.2, 2.2},
+                {2.2, 2.2, Double.NEGATIVE_INFINITY},
+                {-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE},
+                {-Double.MIN_NORMAL, -Double.MIN_NORMAL, -Double.MIN_NORMAL},
+                {-Double.MIN_VALUE, -Double.MIN_VALUE, -Double.MIN_VALUE,}
         };
     }
 

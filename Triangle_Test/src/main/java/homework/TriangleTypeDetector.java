@@ -14,6 +14,7 @@ public class TriangleTypeDetector {
      */
     public String detectTriangle(double firstSide, double secondSide, double thirdSide) throws Exception {
         validatesSides(firstSide, secondSide, thirdSide);
+        validateTriangle(firstSide, secondSide, thirdSide);
         // Determines the type of triangle depending on the number of equal sides
         if (Double.compare(firstSide, secondSide) == 0 && Double.compare(firstSide, thirdSide) == 0
                 && Double.compare(secondSide, thirdSide) == 0) {
@@ -27,8 +28,8 @@ public class TriangleTypeDetector {
     }
 
     /**
-     * Method validatesSides gets values of sides and verify that values are correct
-     * and the triangle with this sides exists. If it isn't, it throws exception
+     * Method validatesSides gets values of sides and verify that values are correct.
+     * If it isn't, it throws exception
      *
      * @param side1 value of the first side
      * @param side2 value of the second side
@@ -38,14 +39,25 @@ public class TriangleTypeDetector {
         double[] params = {side1, side2, side3};
         // Validates values of sides
         for (double sides : params) {
-            if (Double.compare(sides, 0) <= 0 || Double.compare(sides, Double.NaN) == 0
+            if (Double.compare(sides, 0.0) <= 0 || Double.compare(sides, Double.NaN) == 0
                     || Double.compare(sides, Double.POSITIVE_INFINITY) == 0
                     || Double.compare(sides, Double.NEGATIVE_INFINITY) == 0) {
                 throw new Exception("Incorrect side value");
             }
         }
-        // Checks that the triangle exists
-        if (params[0] >= params[1] + params[2] || params[0] <= Math.abs(params[1] - params[2])) {
+    }
+
+    /**
+     * Method validateTriangle gets values of sides and verify that the triangle with this sides exists.
+     * If it isn't, it throws exception
+     *
+     * @param side1 value of the first side
+     * @param side2 value of the second side
+     * @param side3 value of the third side
+     */
+    private void validateTriangle(double side1, double side2, double side3) throws Exception {
+        // Verifies that the triangle exists
+        if (side1 >= side2 + side3 || side1 <= Math.abs(side2 - side3)) {
             throw new Exception("Triangle doesn't exist with such values of sides");
         }
     }
