@@ -7,6 +7,10 @@ import java.math.BigDecimal;
  */
 public class TriangleTypeDetector {
 
+    private final String EQUILATERAL = "Triangle is equilateral";
+    private final String ISOSCELES = "Triangle is isosceles";
+    private final String NORMAL = "Triangle is normal";
+
     /**
      * Method detectTriangle determines what type of triangle is
      *
@@ -20,13 +24,13 @@ public class TriangleTypeDetector {
         // Determines the type of triangle depending on the number of equal sides
         if (Double.compare(firstSide, secondSide) == 0 && Double.compare(firstSide, thirdSide) == 0
                 && Double.compare(secondSide, thirdSide) == 0) {
-            return "Triangle is equilateral";
+            return EQUILATERAL;
         }
         if (Double.compare(firstSide, secondSide) == 0 || Double.compare(firstSide, thirdSide) == 0
                 || Double.compare(secondSide, thirdSide) == 0) {
-            return "Triangle is isosceles";
+            return ISOSCELES;
         }
-        return "Triangle is normal";
+        return NORMAL;
     }
 
     /**

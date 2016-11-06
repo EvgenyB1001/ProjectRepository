@@ -58,8 +58,18 @@ public class TriangleTypeDetectorTest {
                 {Double.NEGATIVE_INFINITY, 2.2, 2.2},
                 {2.2, 2.2, Double.NEGATIVE_INFINITY},
                 {-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE},
+                {-Double.MAX_VALUE, 1.0, 1.0},
+                {1.0, -Double.MAX_VALUE, 1.0},
+                {1.0, 1.0, -Double.MAX_VALUE},
                 {-Double.MIN_NORMAL, -Double.MIN_NORMAL, -Double.MIN_NORMAL},
-                {-Double.MIN_VALUE, -Double.MIN_VALUE, -Double.MIN_VALUE,}
+                {-Double.MIN_NORMAL, 1.0, 1.0},
+                {1.0, -Double.MIN_NORMAL, 1.0},
+                {1.0, 1.0, -Double.MIN_NORMAL},
+                {-Double.MIN_VALUE, -Double.MIN_VALUE, -Double.MIN_VALUE,},
+                {-Double.MIN_VALUE, 1.0, 1.0},
+                {1.0, -Double.MIN_VALUE, 1.0},
+                {1.0, 1.0, -Double.MIN_VALUE}
+
         };
     }
 
@@ -67,8 +77,25 @@ public class TriangleTypeDetectorTest {
     public Object[][] getIsoscelesTriangleValues() {
         return new Object[][]{
                 {2.0, 2.0, 3.3},
-                {3.3, 2.0, 2.0},
-                {2.0, 3.3, 2.0},
+                {1.0, Double.MAX_VALUE, Double.MAX_VALUE},
+                {Double.MAX_VALUE, 1.0, Double.MAX_VALUE},
+                {Double.MAX_VALUE, Double.MAX_VALUE, 1.0},
+                {1.0, 1.0, Double.MIN_VALUE},
+                { Double.MIN_VALUE, 1.0,  1.0},
+                {1.0,  Double.MIN_VALUE, 1.0},
+                {1.0, 1.0, Double.MIN_NORMAL},
+                { Double.MIN_NORMAL, 1.0,  1.0},
+                {1.0,  Double.MIN_NORMAL, 1.0}
+        };
+    }
+
+    @DataProvider(name = "equilateral triangle values")
+    public Object[][] getEquilateralTriangleValues() {
+        return new Object[][]{
+                {2.0, 2.0, 2.0},
+                {Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE},
+                {Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE},
+                {Double.MIN_NORMAL, Double.MIN_NORMAL, Double.MIN_NORMAL},
         };
     }
 
@@ -87,13 +114,13 @@ public class TriangleTypeDetectorTest {
         Assert.assertEquals(detector.detectTriangle(a, b, c), "Triangle is isosceles");
     }
 
-    @Test
-    public void testPositiveDetectEquilateralTriangle() throws Exception {
-        Assert.assertEquals(detector.detectTriangle(12.2, 12.2, 12.2), "Triangle is equilateral");
+    @Test(dataProvider ="equilateral triangle values")
+    public void testPositiveDetectEquilateralTriangle(double a, double b, double c) throws Exception {
+        Assert.assertEquals(detector.detectTriangle(a, b, c), "Triangle is equilateral");
     }
 
     @Test
     public void testPositiveDetectNormalTriangle() throws Exception {
-        Assert.assertEquals(detector.detectTriangle(11.3, 12.2, 10.0), "Triangle is normal");
+        Assert.assertEquals(detector.detectTriangle(3.0, 4.0, 5.0), "Triangle is normal");
     }
 }
