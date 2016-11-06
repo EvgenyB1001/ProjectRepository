@@ -19,8 +19,17 @@ public class TriangleTypeDetectorTest {
         return new Object[][]{
                 {3.0, 4.0, 5.0},
                 {Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE},
+                {1.0, Double.MAX_VALUE, Double.MAX_VALUE},
+                {Double.MAX_VALUE, 1.0, Double.MAX_VALUE},
+                {Double.MAX_VALUE, Double.MAX_VALUE, 1.0},
                 {Double.MIN_NORMAL, Double.MIN_NORMAL, Double.MIN_NORMAL},
-                {Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}
+                {1.0, 1.0, Double.MIN_NORMAL},
+                { Double.MIN_NORMAL, 1.0,  1.0},
+                {1.0,  Double.MIN_NORMAL, 1.0},
+                {Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE},
+                {1.0, 1.0, Double.MIN_VALUE},
+                { Double.MIN_VALUE, 1.0,  1.0},
+                {1.0,  Double.MIN_VALUE, 1.0},
         };
     }
 

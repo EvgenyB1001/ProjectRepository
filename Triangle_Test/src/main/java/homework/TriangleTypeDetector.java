@@ -1,5 +1,7 @@
 package homework;
 
+import java.math.BigDecimal;
+
 /**
  * Class that provides method for checking triangle type.
  */
@@ -56,8 +58,12 @@ public class TriangleTypeDetector {
      * @param side3 value of the third side
      */
     private void validateTriangle(double side1, double side2, double side3) throws Exception {
+        BigDecimal firstSide = BigDecimal.valueOf(side1);
+        BigDecimal secondSide = BigDecimal.valueOf(side2);
+        BigDecimal thirdSide = BigDecimal.valueOf(side3);
         // Verifies that the triangle exists
-        if (side1 >= side2 + side3 || side1 <= Math.abs(side2 - side3)) {
+        if (firstSide.compareTo(secondSide.add(thirdSide)) >= 0
+                || firstSide.compareTo(secondSide.subtract(thirdSide).abs()) <= 0) {
             throw new Exception("Triangle doesn't exist with such values of sides");
         }
     }
