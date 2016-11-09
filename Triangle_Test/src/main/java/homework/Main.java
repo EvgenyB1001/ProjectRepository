@@ -1,5 +1,6 @@
 package homework;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -14,10 +15,10 @@ public class Main {
         try {
             ReaderFile readerFile = new ReaderFile();
             TriangleTypeDetector detector = new TriangleTypeDetector();
-            double[] sides = readerFile.read();
+            BigDecimal[] sides = readerFile.read();
             System.out.println(detector.detectTriangle(sides[0], sides[1], sides[2]));
         } catch (InputMismatchException e) {
-            System.out.println("Incorrect input data. Expected double input format");
+            System.out.println("Incorrect input data");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

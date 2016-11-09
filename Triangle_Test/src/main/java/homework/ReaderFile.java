@@ -1,5 +1,6 @@
 package homework;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -7,12 +8,12 @@ import java.util.Scanner;
  */
 public class ReaderFile {
 
-    public double[] read() throws Exception {
-        double[] parameters = new double[3];
+    public BigDecimal[] read() throws Exception {
+        BigDecimal[] parameters = new BigDecimal[3];
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < parameters.length; i++) {
             System.out.println("Set " + (i + 1) + " side of triangle");
-            parameters[i] = scanner.nextDouble();
+            parameters[i] = scanner.nextBigDecimal();
         }
         return parameters;
     }

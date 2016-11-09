@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<illegal side_a="1.6" side_b="3.1" side_c="5.3" />
+	<illegal side_a="-3" side_b="-4" side_c="-5" />
+	<illegal side_a="-3" side_b="4" side_c="5" />
+	<illegal side_a="3" side_b="-4" side_c="5" />
+	<illegal side_a="3" side_b="4" side_c="-5" />
+	<illegal side_a="0.0" side_b="0.0" side_c="0.0" />
+	<illegal side_a="0.0" side_b="8.7" side_c="7.3" />
+	<illegal side_a="8.7" side_b="0.0" side_c="7.3" />
+	<illegal side_a="8.7" side_b="7.3" side_c="0.0" />
+    <illegal side_a="8.7" side_b="7.3"  />
+    <illegal side_a="8.7" side_c="5.0" />
+    <illegal side_b="7.3" side_c="5.0" />
+    <illegal side_a="8.7" />
+    <illegal side_b="7.3" />
+    <illegal side_c="5.0" />
+    <isosceles side_a="3.0" side_b="3.0" side_c="5.0" />
+    <isosceles side_a="3.0" side_b="5.0" side_c="3.0" />
+    <isosceles side_a="5.0" side_b="3.0" side_c="3.0" />
+    <equilateral side_a="2.0" side_b="2.0" side_c="2.0" />
+    <normal side_a="3.0" side_b="4.0" side_c="5.0" />
+</data>
