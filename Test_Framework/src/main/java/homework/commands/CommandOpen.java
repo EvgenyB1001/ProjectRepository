@@ -99,6 +99,8 @@ public class CommandOpen extends Command {
             }
         } catch (TimeoutException e) {
             isPassed = false;
+        } catch (Exception e) {
+            isPassed = false;
         }
     }
 
