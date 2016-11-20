@@ -97,8 +97,7 @@ public class CommandOpen extends Command {
             } else {
                 isPassed = (executionTime < (timeout * 1000));
             }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        } catch (TimeoutException e) {
             isPassed = false;
         }
     }
