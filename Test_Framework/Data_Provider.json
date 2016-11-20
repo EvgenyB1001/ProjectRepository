@@ -1,0 +1,25 @@
+{
+  "command": [
+    {
+      "name": "open",
+      "attribute1": "https://vk.com",
+      "attribute2": "5"
+    },
+    {
+      "name": "checkPageTitle",
+      "attribute1": "Добро пожаловать | ВКонтакте"
+    },
+    {
+      "name": "checkLinkPresentByHref",
+      "attribute1": "/restore"
+    },
+    {
+      "name": "checkLinkPresentByName",
+      "attribute1": "act"
+    },
+    {
+      "name": "checkPageContains",
+      "attribute1": "ВКонтакте"
+    }
+  ]
+}
