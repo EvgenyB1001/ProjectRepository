@@ -51,7 +51,7 @@ public class CommandOpen extends Command {
         }
         this.url = attributes[0];
         // Convert to milliseconds
-        this.timeout = Long.parseLong(attributes[1]) * 1000;
+        this.timeout = Long.parseLong(attributes[1]);
     }
 
     /**
@@ -95,7 +95,7 @@ public class CommandOpen extends Command {
             if (timeout <= 0) {
                 isPassed = true;
             } else {
-                isPassed = (executionTime < timeout);
+                isPassed = (executionTime < (timeout * 1000));
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
