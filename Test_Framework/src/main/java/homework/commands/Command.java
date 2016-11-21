@@ -12,7 +12,14 @@ public abstract class Command {
      *
      * @param driver object of WebDriver
      */
-    public abstract void performCommand(WebDriver driver);
+    public abstract void performCommand(WebDriver driver) throws Exception;
+
+    /**
+     * Method set execution time of operation
+     *
+     * @param time time of operation
+     */
+    public abstract void setExecutionTime(long time);
 
     /**
      * Method sets attributes to command

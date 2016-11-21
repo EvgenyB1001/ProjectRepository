@@ -82,14 +82,20 @@ public class CommandCheckLinkPresentByName extends Command {
      */
     public void performCommand(WebDriver driver) {
         try {
-            long start = System.currentTimeMillis();
             driver.findElement(By.name(attribute));
-            long finish = System.currentTimeMillis();
-            executionTime = finish - start;
             isPassed = true;
-        } catch (NoSuchElementException nsee) {
+        } catch (NoSuchElementException e) {
             isPassed = false;
         }
+    }
+
+    /**
+     * Method set execution time of operation
+     *
+     * @param time time of operation
+     */
+    public void setExecutionTime(long time) {
+        this.executionTime = time;
     }
 
     /**

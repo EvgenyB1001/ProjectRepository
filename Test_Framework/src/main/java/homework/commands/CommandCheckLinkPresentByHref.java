@@ -84,14 +84,20 @@ public class CommandCheckLinkPresentByHref extends Command {
      */
     public void performCommand(WebDriver driver) {
         try {
-            long start = System.currentTimeMillis();
             driver.findElement(By.xpath("//*[@href='" + attribute + "']"));
-            long finish = System.currentTimeMillis();
-            executionTime = finish - start;
             isPassed = true;
         } catch (NoSuchElementException e) {
             isPassed = false;
         }
+    }
+
+    /**
+     * Method set execution time of operation
+     *
+     * @param time time of operation
+     */
+    public void setExecutionTime(long time) {
+        this.executionTime = time;
     }
 
     /**

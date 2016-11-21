@@ -82,14 +82,20 @@ public class CommandCheckPageTitle extends Command {
      */
     public void performCommand(WebDriver driver) {
         try {
-            long start = System.currentTimeMillis();
             isPassed = (driver.getTitle()).equals(attribute);
-            long finish = System.currentTimeMillis();
-            executionTime = finish - start;
         } catch (Exception e) {
             System.err.println(e.getMessage());
             isPassed = false;
         }
+    }
+
+    /**
+     * Method set execution time of operation
+     *
+     * @param time time of operation
+     */
+    public void setExecutionTime(long time) {
+        this.executionTime = time;
     }
 
     /**

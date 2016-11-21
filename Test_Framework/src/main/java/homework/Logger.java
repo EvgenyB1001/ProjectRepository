@@ -58,9 +58,10 @@ public class Logger {
             records.add("Total tests: " + count);
             records.add("Passed/Failed: " + passed + "/" + failed);
             records.add("Total time: " + time);
-            records.add("Average time: " + time.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP).setScale(3));
+            records.add(count != 0 ? "Average time: " + time.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP).setScale(3)
+                    : "Average time: " + "0.000");
 
-        } catch (ArithmeticException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return records;

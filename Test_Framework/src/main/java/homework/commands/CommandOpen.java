@@ -1,6 +1,9 @@
 package homework.commands;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Class perform action on command open "URL" "timeout"
@@ -50,8 +53,7 @@ public class CommandOpen extends Command {
             throw new Exception("Invalid attributes count. Expected 2");
         }
         this.url = attributes[0];
-        // Convert to milliseconds
-        this.timeout = Long.parseLong(attributes[1]) * 1000;
+        this.timeout = Long.parseLong(attributes[1]);
     }
 
     /**
@@ -88,19 +90,25 @@ public class CommandOpen extends Command {
      */
     public void performCommand(WebDriver driver) {
         try {
-            long start = System.currentTimeMillis();
+            driver.manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS);
             driver.get(url);
-            long finish = System.currentTimeMillis();
-            executionTime = finish - start;
-            if (timeout <= 0) {
-                isPassed = true;
-            } else {
-                isPassed = (executionTime < timeout);
-            }
+            isPassed = true;
+        } catch (TimeoutException e) {
+            System.err.println("Site open failed due timeout");
+            isPassed = false;
         } catch (Exception e) {
             System.err.println(e.getMessage());
             isPassed = false;
         }
+    }
+
+    /**
+     * Method set execution time of operation
+     *
+     * @param time time of operation
+     */
+    public void setExecutionTime(long time) {
+        this.executionTime = time;
     }
 
     /**

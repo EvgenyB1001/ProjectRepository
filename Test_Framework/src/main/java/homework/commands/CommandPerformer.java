@@ -36,7 +36,10 @@ public class CommandPerformer {
         System.setProperty(CHROME_PROPERTY_NAME, WINDOWS_DEFAULT_CHROME_PATH);
         WebDriver driver = new ChromeDriver();
         for (Command command : commands) {
+            long start = System.currentTimeMillis();
             command.performCommand(driver);
+            long finish = System.currentTimeMillis();
+            command.setExecutionTime(finish - start);
             logger.setRecord(command);
         }
         driver.quit();
