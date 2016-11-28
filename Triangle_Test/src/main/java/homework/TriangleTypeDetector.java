@@ -18,16 +18,16 @@ public class TriangleTypeDetector {
      * @param secondSide value of second side
      * @param thirdSide value of third side
      */
-    public String detectTriangle(double firstSide, double secondSide, double thirdSide) throws Exception {
+    public String detectTriangle(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide) throws Exception {
         validatesSides(firstSide, secondSide, thirdSide);
         validateTriangle(firstSide, secondSide, thirdSide);
         // Determines the type of triangle depending on the number of equal sides
-        if (Double.compare(firstSide, secondSide) == 0 && Double.compare(firstSide, thirdSide) == 0
-                && Double.compare(secondSide, thirdSide) == 0) {
+        if (firstSide.compareTo(secondSide) == 0 && firstSide.compareTo(thirdSide) == 0
+                && secondSide.compareTo(thirdSide) == 0) {
             return EQUILATERAL;
         }
-        if (Double.compare(firstSide, secondSide) == 0 || Double.compare(firstSide, thirdSide) == 0
-                || Double.compare(secondSide, thirdSide) == 0) {
+        if (firstSide.compareTo(secondSide) == 0 || firstSide.compareTo(thirdSide) == 0
+                || secondSide.compareTo(thirdSide) == 0) {
             return ISOSCELES;
         }
         return NORMAL;
@@ -41,13 +41,11 @@ public class TriangleTypeDetector {
      * @param side2 value of the second side
      * @param side3 value of the third side
      */
-    private void validatesSides(double side1, double side2, double side3) throws Exception {
-        double[] params = {side1, side2, side3};
+    private void validatesSides(BigDecimal side1, BigDecimal side2, BigDecimal side3) throws Exception {
+        BigDecimal[] params = {side1, side2, side3};
         // Validates values of sides
-        for (double sides : params) {
-            if (Double.compare(sides, 0.0) <= 0 || Double.compare(sides, Double.NaN) == 0
-                    || Double.compare(sides, Double.POSITIVE_INFINITY) == 0
-                    || Double.compare(sides, Double.NEGATIVE_INFINITY) == 0) {
+        for (BigDecimal sides : params) {
+            if (sides.compareTo(BigDecimal.valueOf(0.0)) <= 0) {
                 throw new Exception("Incorrect side value");
             }
         }
@@ -61,13 +59,10 @@ public class TriangleTypeDetector {
      * @param side2 value of the second side
      * @param side3 value of the third side
      */
-    private void validateTriangle(double side1, double side2, double side3) throws Exception {
-        BigDecimal firstSide = BigDecimal.valueOf(side1);
-        BigDecimal secondSide = BigDecimal.valueOf(side2);
-        BigDecimal thirdSide = BigDecimal.valueOf(side3);
+    private void validateTriangle(BigDecimal side1, BigDecimal side2, BigDecimal side3) throws Exception {
         // Verifies that the triangle exists
-        if (firstSide.compareTo(secondSide.add(thirdSide)) >= 0
-                || firstSide.compareTo(secondSide.subtract(thirdSide).abs()) <= 0) {
+        if (side1.compareTo(side2.add(side3)) >= 0
+                || side1.compareTo(side2.subtract(side3).abs()) <= 0) {
             throw new Exception("Triangle doesn't exist with such values of sides");
         }
     }
