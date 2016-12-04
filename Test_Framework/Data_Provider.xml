@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <command name="open" attribute1="https://vk.com" attribute2="5"/>
+    <command name="checkPageTitle" attribute1="Добро пожаловать | ВКонтакте"/>
+    <command name="checkLinkPresentByHref" attribute1="/restore"/>
+    <command name="checkLinkPresentByName" attribute1="act"/>
+    <command name="checkPageContains" attribute1="ВКонтакте"/>
+</data>

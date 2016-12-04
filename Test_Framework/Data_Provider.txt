@@ -1,0 +1,5 @@
+open "https://vk.com" "5"
+checkPageTitle "Добро пожаловать | ВКонтакте"
+checkLinkPresentByHref "/restore"
+checkLinkPresentByName "act"
+checkPageContains "ВКонтакте"
