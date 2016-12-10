@@ -18,7 +18,7 @@ public class SitePageTest {
     SitePage page;
     WebDriver driver;
 
-    private final String URL = "https://local.wordpress.dev";
+    private final String URL = "http://localhost:8888";
     private final String EXISTING_TEXT = "Hello world!";
     private final String INEXISTING_TEXT = "Inexisting post";
 

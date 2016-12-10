@@ -15,20 +15,28 @@ public class LoginPageTest {
     LogInPage page;
     WebDriver driver;
 
-    private final String URL = "https://local.wordpress.dev/wp-login.php";
+    private final String URL = "http://localhost:8888/wp-login.php";
     private final String ADMIN_NAME = "admin";
+    private final String EDITOR_NAME = "user1";
+    private final String AUTHOR_NAME = "user2";
+    private final String CONTRIBUTOR_NAME = "user3";
+    private final String SUBSCRIBER_NAME = "user4";
     private final String UNREGISTERED_NAME = "unregistered";
     private final String ADMIN_PASSWORD = "password";
+    private final String EDITOR_PASSWORD = "user1";
+    private final String AUTHOR_PASSWORD = "user2";
+    private final String CONTRIBUTOR_PASSWORD = "user3";
+    private final String SUBSCRIBER_PASSWORD = "user4";
     private final String WRONG_PASSWORD = "paswor";
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
         driver = new ChromeDriver();
         page = new LogInPage(driver);
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
@@ -49,7 +57,11 @@ public class LoginPageTest {
     @DataProvider(name = "valid parameters")
     public Object[][] getValidParameters() {
         return new Object[][]{
-                {ADMIN_NAME, ADMIN_PASSWORD}
+                {ADMIN_NAME, ADMIN_PASSWORD},
+                {EDITOR_NAME, EDITOR_PASSWORD},
+                {AUTHOR_NAME, AUTHOR_PASSWORD},
+                {CONTRIBUTOR_NAME, CONTRIBUTOR_PASSWORD},
+                {SUBSCRIBER_NAME, SUBSCRIBER_PASSWORD}
         };
     }
 

@@ -14,8 +14,8 @@ public class PostPageTest {
     CurrentPostPage page;
     WebDriver driver;
 
-    private final String LOGIN_URL = "https://local.wordpress.dev/wp-login.php";
-    private final String URL = "http://local.wordpress.dev/?p=1";
+    private final String LOGIN_URL = "http://localhost:8888/wp-login.php";
+    private final String URL = "http://localhost:8888/?p=1";
     private final String USERNAME = "commentator";
     private final String EMAIL = "commentator@gmail.com";
     private final String INCORRECT_EMAIL = "@incorrectEmail";
@@ -44,12 +44,6 @@ public class PostPageTest {
                 {COMMENT, "", EMAIL},
                 {COMMENT, USERNAME, INCORRECT_EMAIL}
         };
-    }
-
-    @Test
-    public void tstValidCommentByUnauthorizedUser() {
-        page.openPage(URL).commentByUnknownUser(COMMENT, USERNAME, EMAIL).clickSubmit();
-        Assert.assertTrue(!(driver.getTitle().equals("Comment Submission Failure")));
     }
 
     @Test(dataProvider = "invalid parameters")

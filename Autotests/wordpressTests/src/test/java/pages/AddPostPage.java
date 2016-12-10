@@ -16,7 +16,6 @@ public class AddPostPage {
     /**
      * Lines with page data
      */
-    private final String URL = "http://local.wordpress.dev/wp-admin/post-new.php";
     private final String TITLE_FIELD = "title";
     private final String PUBLISH_BUTTON = "publish";
 

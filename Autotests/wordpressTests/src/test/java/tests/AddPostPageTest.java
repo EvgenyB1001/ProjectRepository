@@ -9,6 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.AddPostPage;
+import pages.LogInPage;
 
 /**
  * Created by 777 on 05.12.2016.
@@ -17,10 +18,13 @@ public class AddPostPageTest {
 
     WebDriver driver;
     AddPostPage page;
-    DBManager manager = DBManager.getInstance();
+    LogInPage logInPage;
 
-    private final String LOGIN_URL = "https://local.wordpress.dev/wp-login.php";
-    private final String URL = "http://local.wordpress.dev/wp-admin/post-new.php";
+    private final String SITE_NAME = "My_Site";
+    private final String ADMIN_NAME = "admin";
+    private final String ADMIN_PASSWORD = "password";
+    private final String URL = "http://localhost:8888/wp-admin/post-new.php";
+    private final String LOGIN_URL = "http://localhost:8888/wp-login.php";
     private final String TITLE_TEXT = "New post";
 
     @BeforeTest
@@ -28,6 +32,7 @@ public class AddPostPageTest {
         System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
         driver = new ChromeDriver();
         page = new AddPostPage(driver);
+        logInPage = new LogInPage(driver);
     }
 
     @AfterTest
@@ -36,13 +41,10 @@ public class AddPostPageTest {
     }
 
     @Test
-    public void tstValidSetNewPost() {
-        Integer previousCount = manager.getCountOfPosts();
-        page.openPage(URL);
-        driver.findElement(By.id("user_login")).sendKeys("admin");
-        driver.findElement(By.id("user_pass")).sendKeys("password");
-        driver.findElement(By.id("wp-submit")).click();
-        page.setTitle(TITLE_TEXT).publish();
-        Assert.assertEquals(manager.getCountOfPosts(), (Integer)(previousCount + 1));
+    public void tstValidSetNewPostByAdmin() {
+        logInPage.openPage(LOGIN_URL).setUsername(ADMIN_NAME).setPassword(ADMIN_PASSWORD).clickSubmit();
+        page.openPage(URL).setTitle(TITLE_TEXT).publish();
+        driver.findElement(By.linkText("View post")).click();
+        Assert.assertEquals(driver.getTitle(), TITLE_TEXT + " – " + SITE_NAME);
     }
 }
