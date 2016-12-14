@@ -11,9 +11,13 @@ public class DBManager {
      * Lines with queries
      */
     private static final String DELETE_QUERY = "DELETE FROM ? WHERE user_login = ? AND user_email = ?";
+    private static final String[] SELECT_QUERY = {
+            "SELECT * FROM ",
+            " WHERE post_title = "
+    };
     private static final String INSERT_QUERY = "INSERT INTO ? (`user_login`, `user_pass`, " +
             "`user_nicename`, `user_email`, `user_registered`)" +
-                    " VALUES (?, MD5(?), ?, ?, ?)" ;
+            " VALUES (?, MD5(?), ?, ?, ?)";
     private static final String COUNT_QUERY = "SELECT COUNT(*) FROM ?";
     private static final String DEFINITE_COUNT_QUERY = "SELECT COUNT(*) FROM ? WHERE user_login = ? AND user_email = ?";
 
@@ -74,8 +78,27 @@ public class DBManager {
         DBManager.getInstance().openConnection();
         if (connection != null) {
             try {
-                PreparedStatement statement = connection.prepareStatement(COUNT_QUERY);
-                statement.setString(1, database);
+                String actualQuery = COUNT_QUERY.concat(database);
+                PreparedStatement statement = connection.prepareStatement(actualQuery);
+                //statement.setString(1, database);
+                ResultSet resultSet = statement.executeQuery();
+                return resultSet.getInt(1);
+            } catch (SQLException sqle) {
+                System.out.println(sqle.getMessage());
+            } finally {
+                closeConnection();
+            }
+        }
+        return null;
+    }
+
+    public Integer getCurrentPost(String table, String title) {
+        DBManager.getInstance().openConnection();
+        if (connection != null) {
+            try {
+                String resultQuery = SELECT_QUERY[0] + table + SELECT_QUERY[1] + "\"" + title + "\"";
+                PreparedStatement statement = connection.prepareStatement(resultQuery);
+                statement.setString(1, title);
                 ResultSet resultSet = statement.executeQuery();
                 return resultSet.getInt(1);
             } catch (SQLException sqle) {

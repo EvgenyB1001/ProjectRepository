@@ -21,10 +21,12 @@ public class SitePageTest {
     private final String URL = "http://localhost:8888";
     private final String EXISTING_TEXT = "Hello world!";
     private final String INEXISTING_TEXT = "Inexisting post";
+    private final String POST_URL = "http://localhost:8888/?p=1";
+    private final String COMMENT_URL = "http://localhost:8888/?p=1#comments";
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\" + "chromedriver.exe");
         driver = new ChromeDriver();
         page = new SitePage(driver);
     }
@@ -33,6 +35,44 @@ public class SitePageTest {
     public void searchExistingPost() {
         page.openSite(URL).search(EXISTING_TEXT).submitSearch();
         Assert.assertTrue(!driver.findElement(By.className("page-title")).getText().equals("Nothing Found"));
+    }
+
+    @Test
+    public void checkLinkPost() {
+        page.openSite(URL);
+        driver.findElement(By.xpath("//*[@href='" + POST_URL + "']")).click();
+        Assert.assertTrue(driver.findElement(By.className("entry-title")).getText().equals(EXISTING_TEXT));
+    }
+
+    @Test
+    public void checkLinkComment() {
+        page.openSite(URL);
+        driver.findElement(By.xpath("//*[@href='" + COMMENT_URL + "']")).click();
+        driver.findElement(By.cssSelector("li#comment-1.comment.even.thread-even.depth-1"));
+    }
+
+    @Test
+    public void checkSearchFieldPresent() {
+        page.openSite(URL);
+        driver.findElement(By.cssSelector("input.search-field"));
+    }
+
+    @Test
+    public void checkMainTextPresent() {
+        page.openSite(URL);
+        driver.findElement(By.cssSelector("main.site-main"));
+    }
+
+    @Test
+    public void checkSiteHeaderPresent() {
+        page.openSite(URL);
+        driver.findElement(By.cssSelector("header.site-header"));
+    }
+
+    @Test
+    public void checkSidebarPresent() {
+        page.openSite(URL);
+        driver.findElement(By.cssSelector("aside.sidebar.widget-area"));
     }
 
     @Test

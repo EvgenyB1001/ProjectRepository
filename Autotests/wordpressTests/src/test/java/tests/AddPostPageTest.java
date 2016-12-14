@@ -1,6 +1,5 @@
 package tests;
 
-import database.DBManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,7 +19,6 @@ public class AddPostPageTest {
     AddPostPage page;
     LogInPage logInPage;
 
-    private final String SITE_NAME = "My_Site";
     private final String ADMIN_NAME = "admin";
     private final String ADMIN_PASSWORD = "password";
     private final String URL = "http://localhost:8888/wp-admin/post-new.php";
@@ -29,10 +27,12 @@ public class AddPostPageTest {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\" + "chromedriver.exe");
         driver = new ChromeDriver();
         page = new AddPostPage(driver);
         logInPage = new LogInPage(driver);
+        logInPage.openPage(LOGIN_URL).setUsername(ADMIN_NAME).setPassword(ADMIN_PASSWORD).clickSubmit();
+        page.openPage(URL);
     }
 
     @AfterTest
@@ -41,10 +41,35 @@ public class AddPostPageTest {
     }
 
     @Test
+    public void tstCheckPublishBarPresent() {
+        driver.findElement(By.cssSelector("div#submitdiv.postbox"));
+    }
+
+    @Test
+    public void tstCheckFormatBarPresent() {
+        driver.findElement(By.cssSelector("div#formatdiv.postbox"));
+    }
+
+    @Test
+    public void tstCheckCategoryBarPresent() {
+        driver.findElement(By.cssSelector("div#categorydiv.postbox"));
+    }
+
+    @Test
+    public void tstCheckTagsBarPresent() {
+        driver.findElement(By.cssSelector("div#tagsdiv-post_tag.postbox"));
+    }
+
+    @Test
+    public void tstCheckPostImageBarPresent() {
+        driver.findElement(By.cssSelector("div#postimagediv.postbox"));
+    }
+
+    @Test
     public void tstValidSetNewPostByAdmin() {
-        logInPage.openPage(LOGIN_URL).setUsername(ADMIN_NAME).setPassword(ADMIN_PASSWORD).clickSubmit();
-        page.openPage(URL).setTitle(TITLE_TEXT).publish();
+        page.setTitle(TITLE_TEXT).publish();
         driver.findElement(By.linkText("View post")).click();
-        Assert.assertEquals(driver.getTitle(), TITLE_TEXT + " – " + SITE_NAME);
+        Assert.assertTrue(driver.findElement(By.className("entry-title")).getText().equals(TITLE_TEXT));
+
     }
 }

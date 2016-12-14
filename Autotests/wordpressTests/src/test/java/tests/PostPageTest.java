@@ -1,8 +1,10 @@
 package tests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.*;
 import pages.CurrentPostPage;
 import pages.LogInPage;
@@ -23,7 +25,7 @@ public class PostPageTest {
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\" + "chromedriver.exe");
         driver = new ChromeDriver();
         page = new CurrentPostPage(driver);
     }
@@ -46,6 +48,18 @@ public class PostPageTest {
         };
     }
 
+    @Test
+    public void tstCommentPresent() {
+        page.openPage(URL);
+        driver.findElement(By.cssSelector("article.post-1.post.type-post.status-publish.format-standard.hentry.category-uncategorized"));
+    }
+
+    @Test
+    public void tstPostPresent() {
+        page.openPage(URL);
+        driver.findElement(By.cssSelector("li#comment-1.comment.even.thread-even.depth-1"));
+    }
+
     @Test(dataProvider = "invalid parameters")
     public void tstInvalidCommentByUnauthorizedUser(String comment, String name, String email) {
         page.openPage(URL).commentByUnknownUser(comment, name, email).clickSubmit();
@@ -58,5 +72,4 @@ public class PostPageTest {
         page.openPage(URL).commentByAuthorizedUser(COMMENT).clickSubmit();
         Assert.assertTrue(!(driver.getTitle().equals("Comment Submission Failure")));
     }
-
 }
