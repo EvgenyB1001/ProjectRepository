@@ -13,6 +13,8 @@ public class SitePage {
      */
     WebDriver driver;
 
+    By postLink = By.xpath("//*[@href='http://localhost:8888/?p=1']");
+    By commentLink = By.xpath("//*[@href='http://localhost:8888/?p=1#comments']");
     /**
      * Lines with page data
      */
@@ -42,6 +44,26 @@ public class SitePage {
      */
     public SitePage search(String text) {
         driver.findElement(By.className(SEARCH_FIELD)).sendKeys(text);
+        return this;
+    }
+
+    /**
+     * Method searches for post link and clicks it
+     *
+     * @return current object of class
+     */
+    public SitePage checkLinkPost() {
+        driver.findElement(postLink).click();
+        return this;
+    }
+
+    /**
+     * Method searches for comment link and clicks it
+     *
+     * @return current object of class
+     */
+    public SitePage checkLinkComment() {
+        driver.findElement(commentLink).click();
         return this;
     }
 

@@ -21,8 +21,6 @@ public class SitePageTest {
     private final String URL = "http://localhost:8888";
     private final String EXISTING_TEXT = "Hello world!";
     private final String INEXISTING_TEXT = "Inexisting post";
-    private final String POST_URL = "http://localhost:8888/?p=1";
-    private final String COMMENT_URL = "http://localhost:8888/?p=1#comments";
 
     @BeforeTest
     public void setUp() {
@@ -39,15 +37,13 @@ public class SitePageTest {
 
     @Test
     public void checkLinkPost() {
-        page.openSite(URL);
-        driver.findElement(By.xpath("//*[@href='" + POST_URL + "']")).click();
+        page.openSite(URL).checkLinkPost();
         Assert.assertTrue(driver.findElement(By.className("entry-title")).getText().equals(EXISTING_TEXT));
     }
 
     @Test
     public void checkLinkComment() {
-        page.openSite(URL);
-        driver.findElement(By.xpath("//*[@href='" + COMMENT_URL + "']")).click();
+        page.openSite(URL).checkLinkComment();
         driver.findElement(By.cssSelector("li#comment-1.comment.even.thread-even.depth-1"));
     }
 
