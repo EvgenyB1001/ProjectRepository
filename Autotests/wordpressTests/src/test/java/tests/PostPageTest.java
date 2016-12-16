@@ -1,0 +1,75 @@
+package tests;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.*;
+import pages.CurrentPostPage;
+import pages.LogInPage;
+
+/**
+ * Created by 777 on 05.12.2016.
+ */
+public class PostPageTest {
+    CurrentPostPage page;
+    WebDriver driver;
+
+    private final String LOGIN_URL = "http://localhost:8888/wp-login.php";
+    private final String URL = "http://localhost:8888/?p=1";
+    private final String USERNAME = "commentator";
+    private final String EMAIL = "commentator@gmail.com";
+    private final String INCORRECT_EMAIL = "@incorrectEmail";
+    private final String COMMENT = "Some comment";
+
+    @BeforeMethod
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\" + "chromedriver.exe");
+        driver = new ChromeDriver();
+        page = new CurrentPostPage(driver);
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
+    }
+
+    @DataProvider(name = "invalid parameters")
+    public Object[][] getInvalidParameters() {
+        return new Object[][]{
+                {"", "", ""},
+                {"", "", EMAIL},
+                {"", USERNAME, ""},
+                {COMMENT, "", ""},
+                {COMMENT, USERNAME, ""},
+                {COMMENT, "", EMAIL},
+                {COMMENT, USERNAME, INCORRECT_EMAIL}
+        };
+    }
+
+    @Test
+    public void tstCommentPresent() {
+        page.openPage(URL);
+        driver.findElement(By.cssSelector("article.post-1.post.type-post.status-publish.format-standard.hentry.category-uncategorized"));
+    }
+
+    @Test
+    public void tstPostPresent() {
+        page.openPage(URL);
+        driver.findElement(By.cssSelector("li#comment-1.comment.even.thread-even.depth-1"));
+    }
+
+    @Test(dataProvider = "invalid parameters")
+    public void tstInvalidCommentByUnauthorizedUser(String comment, String name, String email) {
+        page.openPage(URL).commentByUnknownUser(comment, name, email).clickSubmit();
+        Assert.assertTrue(driver.getTitle().equals("Comment Submission Failure"));
+    }
+
+    @Test
+    public void tstValidCommentByAuthorizedUser() {
+        new LogInPage(driver).openPage(LOGIN_URL).setUsername("user1").setPassword("user1").clickSubmit();
+        page.openPage(URL).commentByAuthorizedUser(COMMENT).clickSubmit();
+        Assert.assertTrue(!(driver.getTitle().equals("Comment Submission Failure")));
+    }
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Wordpress_Tests">
+    <test name="Site_Page_Test" preserve-order="true">
+        <classes>
+            <class name="tests.SitePageTest">
+            </class>
+        </classes>
+    </test>
+    <test name="Log_In_Test" preserve-order="true">
+        <classes>
+            <class name="tests.LoginPageTest">
+            </class>
+        </classes>
+    </test>
+    <test name="Post_Comment_Test" preserve-order="true">
+        <classes>
+            <class name="tests.PostPageTest">
+            </class>
+        </classes>
+    </test>
+    <test name="Post_Add_Test" preserve-order="true">
+        <classes>
+            <class name="tests.AddPostPageTest">
+            </class>
+        </classes>
+    </test>
+</suite>

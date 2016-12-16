@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <valid login="admin" password="password" />
+    <valid login="user1" password="user1" />
+    <valid login="user2" password="user2" />
+    <valid login="user3" password="user3" />
+    <valid login="user4" password="user4" />
+    <invalid login="admin" password="passwor" />
+    <invalid login="admin" password="" />
+    <invalid login="" password="password" />
+    <invalid login="" password="" />
+    <invalid login="unregistered" password="password" />
+</data>
