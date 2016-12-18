@@ -6,19 +6,19 @@
             </class>
         </classes>
     </test>
-    <test name="Log_In_Test" preserve-order="true">
+    <test name="Login_Page_Test" preserve-order="true">
         <classes>
             <class name="tests.LoginPageTest">
             </class>
         </classes>
     </test>
-    <test name="Post_Comment_Test" preserve-order="true">
+    <test name="Post_Page_Test" preserve-order="true">
         <classes>
             <class name="tests.PostPageTest">
             </class>
         </classes>
     </test>
-    <test name="Post_Add_Test" preserve-order="true">
+    <test name="Add_Post_Test" preserve-order="true">
         <classes>
             <class name="tests.AddPostPageTest">
             </class>

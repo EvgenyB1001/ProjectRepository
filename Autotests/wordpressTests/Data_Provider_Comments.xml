@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <invalid comment="" username="" email=""/>
+    <invalid comment="" username="" email="commentator@gmail.com"/>
+    <invalid comment="" username="commentator" email=""/>
+    <invalid comment="Some comment" username="" email=""/>
+    <invalid comment="" username="commentator" email="commentator@gmail.com"/>
+    <invalid comment="Some comment" username="commentator" email=""/>
+    <invalid comment="Some comment" username="" email="commentator@gmail.com"/>
+    <invalid comment="Some comment" username="commentator" email="@gmail.com"/>
+    <authorized comment="Comment editor" name="user1" password="user1"/>
+    <authorized comment="Comment admin" name="admin" password="password"/>
+    <authorized comment="Comment author" name="user2" password="user2"/>
+    <authorized comment="Comment contributor" name="user3" password="user3"/>
+    <authorized comment="Comment subscriber" name="user4" password="user4"/>
+</data>

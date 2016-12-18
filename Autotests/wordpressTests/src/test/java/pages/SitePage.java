@@ -11,10 +11,18 @@ public class SitePage {
     /**
      * Object of Webdriver
      */
-    WebDriver driver;
+    private WebDriver driver;
 
-    By postLink = By.xpath("//*[@href='http://localhost:8888/?p=1']");
-    By commentLink = By.xpath("//*[@href='http://localhost:8888/?p=1#comments']");
+    /**
+     * Locators for current page
+     */
+    private final By POST_LINK = By.xpath("//*[@href='http://localhost:8888/?p=1']");
+    private final By COMMENT_LINK = By.xpath("//*[@href='http://localhost:8888/?p=1#comments']");
+    private final By SEARCH_FIELD_FORM = By.cssSelector("main.site-main");
+    private final By MAIN_TEXT_FIELD = By.cssSelector("main.site-main");
+    private final By SITE_HEADER_FIELD = By.cssSelector("header.site-header");
+    private final By SIDEBAR_FIELD = By.cssSelector("aside.sidebar.widget-area");
+
     /**
      * Lines with page data
      */
@@ -53,7 +61,47 @@ public class SitePage {
      * @return current object of class
      */
     public SitePage checkLinkPost() {
-        driver.findElement(postLink).click();
+        driver.findElement(POST_LINK).click();
+        return this;
+    }
+
+    /**
+     * Method searches for search field
+     *
+     * @return current object of class
+     */
+    public SitePage findSearchField() {
+        driver.findElement(SEARCH_FIELD_FORM);
+        return this;
+    }
+
+    /**
+     * Method searches for main text field
+     *
+     * @return current object of class
+     */
+    public SitePage findMainTextField() {
+        driver.findElement(MAIN_TEXT_FIELD);
+        return this;
+    }
+
+    /**
+     * Method searches for header field
+     *
+     * @return current object of class
+     */
+    public SitePage findHeaderField() {
+        driver.findElement(SITE_HEADER_FIELD);
+        return this;
+    }
+
+    /**
+     * Method searches for sidebar field
+     *
+     * @return current object of class
+     */
+    public SitePage findSidebarField() {
+        driver.findElement(SIDEBAR_FIELD);
         return this;
     }
 
@@ -63,7 +111,7 @@ public class SitePage {
      * @return current object of class
      */
     public SitePage checkLinkComment() {
-        driver.findElement(commentLink).click();
+        driver.findElement(COMMENT_LINK).click();
         return this;
     }
 

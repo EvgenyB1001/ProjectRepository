@@ -10,24 +10,25 @@ import org.testng.annotations.Test;
 import pages.AddPostPage;
 import pages.LogInPage;
 
-/**
- * Created by 777 on 05.12.2016.
- */
 public class AddPostPageTest {
 
-    WebDriver driver;
-    AddPostPage page;
-    LogInPage logInPage;
+    private WebDriver driver;
+    private AddPostPage page;
+    private LogInPage logInPage;
 
     private final String ADMIN_NAME = "admin";
     private final String ADMIN_PASSWORD = "password";
     private final String URL = "http://localhost:8888/wp-admin/post-new.php";
     private final String LOGIN_URL = "http://localhost:8888/wp-login.php";
     private final String TITLE_TEXT = "New post";
+    private final String CHROME_DRIVER = "webdriver.chrome.driver";
+    private final String CHROME_DRIVER_PATH = System.getProperty("user.dir") + "\\" + "chromedriver.exe";
+
+    private final By ENTRY_TITLE = By.className("entry-title");
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\" + "chromedriver.exe");
+        System.setProperty(CHROME_DRIVER, CHROME_DRIVER_PATH);
         driver = new ChromeDriver();
         page = new AddPostPage(driver);
         logInPage = new LogInPage(driver);
@@ -42,34 +43,33 @@ public class AddPostPageTest {
 
     @Test
     public void tstCheckPublishBarPresent() {
-        driver.findElement(By.cssSelector("div#submitdiv.postbox"));
+        page.findPublishBarField();
     }
 
     @Test
     public void tstCheckFormatBarPresent() {
-        driver.findElement(By.cssSelector("div#formatdiv.postbox"));
+        page.findFormatBarField();
     }
 
     @Test
     public void tstCheckCategoryBarPresent() {
-        driver.findElement(By.cssSelector("div#categorydiv.postbox"));
+        page.findCategoryBarField();
     }
 
     @Test
     public void tstCheckTagsBarPresent() {
-        driver.findElement(By.cssSelector("div#tagsdiv-post_tag.postbox"));
+        page.findTagsBarField();
     }
 
     @Test
     public void tstCheckPostImageBarPresent() {
-        driver.findElement(By.cssSelector("div#postimagediv.postbox"));
+        page.findImageBarField();
     }
 
     @Test
     public void tstValidSetNewPostByAdmin() {
         page.setTitle(TITLE_TEXT).publish();
-        driver.findElement(By.linkText("View post")).click();
-        Assert.assertTrue(driver.findElement(By.className("entry-title")).getText().equals(TITLE_TEXT));
-
+        page.clickViewPost();
+        Assert.assertTrue(driver.findElement(ENTRY_TITLE).getText().equals(TITLE_TEXT));
     }
 }

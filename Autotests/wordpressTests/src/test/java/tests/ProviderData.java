@@ -18,6 +18,9 @@ public class ProviderData {
      */
     private static ProviderData instance;
 
+    private ProviderData() {
+    }
+
     /**
      * Singleton implementation
      */
@@ -36,7 +39,7 @@ public class ProviderData {
      * @param attributes attributes of line
      * @return array of objects of data from XML
      */
-    public Object[][] readUserDataXml(String fileName, String type, String[] attributes) throws Exception {
+    public Object[][] readDataXml(String fileName, String type, String[] attributes) throws Exception {
         File inputFile = new File(System.getProperty("user.dir") + fileName);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -46,10 +49,10 @@ public class ProviderData {
         Object[][] result = new String[list.getLength()][];
         for (int i = 0; i < list.getLength(); i++) {
             NamedNodeMap map = list.item(i).getAttributes();
-            result[i] = new String[]{
-                    map.getNamedItem(attributes[0]) == null ? null : map.getNamedItem(attributes[0]).getNodeValue(),
-                    map.getNamedItem(attributes[1]) == null ? null : map.getNamedItem(attributes[1]).getNodeValue()
-            };
+            result[i] = new String[attributes.length];
+            for (int j = 0; j < attributes.length; j++) {
+                result[i][j] = map.getNamedItem(attributes[j]) == null ? null : map.getNamedItem(attributes[j]).getNodeValue();
+            }
         }
         return result;
     }
