@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.lang.reflect.Field;
+
 /**
  * Class of definite post page
  */
@@ -11,7 +13,13 @@ public class CurrentPostPage {
     /**
      * Object of Webdriver
      */
-    WebDriver driver;
+    private WebDriver driver;
+
+    /**
+     * Locators for current page
+     */
+    private final By COMMENT_TEXT = By.cssSelector("article.post-1.post.type-post.status-publish.format-standard.hentry.category-uncategorized");
+    private final By POST_TEXT = By.cssSelector("li#comment-1.comment.even.thread-even.depth-1");
 
     /**
      * Lines with page data
@@ -59,6 +67,26 @@ public class CurrentPostPage {
      */
     public CurrentPostPage commentByAuthorizedUser(String comment) {
         driver.findElement(By.id(COMMENT_FIELD)).sendKeys(comment);
+        return this;
+    }
+
+    /**
+     * Method searches for comment text field
+     *
+     * @return object of class
+     */
+    public CurrentPostPage findCommentTextField() {
+        driver.findElement(COMMENT_TEXT);
+        return this;
+    }
+
+    /**
+     * Method searches for post text field
+     *
+     * @return object of class
+     */
+    public CurrentPostPage findPostTextField() {
+        driver.findElement(POST_TEXT);
         return this;
     }
 

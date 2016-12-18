@@ -7,15 +7,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.*;
 import pages.LogInPage;
 
-
-/**
- * Created by 777 on 04.12.2016.
- */
 public class LoginPageTest {
 
-    LogInPage page;
-    WebDriver driver;
-    ProviderData provider = ProviderData.getInstance();
+    private LogInPage page;
+    private WebDriver driver;
+    private ProviderData provider = ProviderData.getInstance();
 
     private final String LOGIN = "login";
     private final String PASSWORD = "password";
@@ -23,10 +19,12 @@ public class LoginPageTest {
     private final String INVALID_DATA = "invalid";
     private final String URL = "http://localhost:8888/wp-login.php";
     private final String FILENAME = "/Data_Provider_Users.xml";
+    private final String CHROME_DRIVER = "webdriver.chrome.driver";
+    private final String CHROME_DRIVER_PATH = System.getProperty("user.dir") + "\\" + "chromedriver.exe";
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\" + "chromedriver.exe");
+        System.setProperty(CHROME_DRIVER, CHROME_DRIVER_PATH);
         driver = new ChromeDriver();
         page = new LogInPage(driver);
     }
@@ -38,12 +36,12 @@ public class LoginPageTest {
 
     @DataProvider(name = "invalid user data")
     public Object[][] getInvalidData() throws Exception {
-        return provider.readUserDataXml(FILENAME, INVALID_DATA, new String[]{LOGIN, PASSWORD});
+        return provider.readDataXml(FILENAME, INVALID_DATA, new String[]{LOGIN, PASSWORD});
     }
 
     @DataProvider(name = "valid user data")
     public Object[][] getValidData() throws Exception {
-        return provider.readUserDataXml(FILENAME, VALID_DATA, new String[]{LOGIN, PASSWORD});
+        return provider.readDataXml(FILENAME, VALID_DATA, new String[]{LOGIN, PASSWORD});
     }
 
     @Test(dataProvider = "invalid user data")
